@@ -1,0 +1,73 @@
+.hover-pointer:hover {
+    cursor: pointer;
+}
+
+.class-button {
+    display: inline-block;
+    padding: 5px;
+    font-size: larger;
+    border: 1px solid black;
+}
+
+.game-title {
+    display: inline-block;
+    margin-left: 1vw;
+    margin-top: 2vh;
+}
+
+.menu-button {
+    display: inline-block;
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    border: 1px solid black;
+    margin-left: 1vw;
+}
+
+.no-display {
+    display: none;
+}
+
+.skill-button {
+    float: left;
+    vertical-align: middle;
+    height: 40px;
+    width: 55px;
+    padding: 5px;
+    margin-right: 1vw;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.skill-button-single-word {
+    line-height: 40px;
+}
+
+.standard-margin-left {
+    margin-left: 1vw;
+}
+
+#scene, #scene-header, #scene-content-frame, #scene-footer-frame {
+    width: 70vw;
+}
+
+#scene {
+    height: 68vh;
+    border: 1px solid black;
+}
+
+#scene-header {
+    height: 13vh;
+    max-height: 13vh;
+    border-bottom: 1px solid black;
+}
+
+#scene-content-frame {
+    height: 35vh;
+    max-height: 35vh;
+}
+
+#scene-footer-frame {
+    height: 15vh;
+    max-height: 15vh;
+    border-top: 1px solid black;
+}

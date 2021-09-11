@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Necromancer</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="scene">
+            <div id="scene-header">
+                <h1 class="game-title hover-pointer" onclick="javascript:location.reload()">Necromancer</h1>
+                <div class="hover-pointer menu-button">New Game</div>
+                <div class="hover-pointer menu-button">Load Game</div>
+                <div class="hover-pointer menu-button">Save Game</div>
+                <div class="hover-pointer menu-button">Help</div>
+                <div class="hover-pointer menu-button">Settings</div>
+            </div>
+            <div id="scene-content-frame">
+                <div id="scene-content" class="standard-margin-left">
+                    <h2>Welcome to Necromancer!</h2>
+                    <p>
+                        <strong>Necromancer</strong> is a turn-based, narrative-driven, RPG with hardcore elements.
+                        Walk the land of Maldirin as a lowly conjuror, seeking power amongst decadence, nobility, chaos, and splendor.
+                    </p>
+                    <p>
+                        Choose your class below to begin the game. Classes start with unique abilities and small existing faction ties, but otherwise have little effect on the overall course of gameplay.
+                    </p>
+                    <div id="medium-class" class="hover-pointer class-button">Medium</div>
+                    <div id="summoner-class" class="hover-pointer class-button">Summoner</div>
+                    <div id="thaumaturgist-class" class="hover-pointer class-button">Thaumaturgist</div>
+                    <div id="chosen-class-info" class="no-display">
+                        <p>
+                            You have chosen: <strong id="chosen-class">A CLASS</strong>
+                        </p>
+                        <div id="confirm-class-button" class="hover-pointer class-button">Confirm</div>
+                    </div>
+                </div>                
+            </div>
+            <div id="scene-footer-frame">
+                <div id="scene-footer" class="standard-margin-left">
+                    <p id="scene-footer-primary">
+                        <strong>Class: </strong><span id="class-notes-name">None</span>
+                    </p>
+                    <p id="scene-footer-secondary">
+                        <strong>Description: </strong><span id="class-notes-description">N/A</span>
+                    </p>
+                </div>                
+            </div>
+        </div>
+        <script type="module" src="main.js"></script>
+    </body>
+</html>
