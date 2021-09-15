@@ -12,6 +12,7 @@ const confirmClassButton = document.getElementById('confirm-class-button');
 const footerNode = document.getElementById('scene-footer');
 
 const addSkillButton = (parent, skill, addSkillEventListeners) => {
+	console.log("1");
     const skillButton = createSkillButton();
     const splitName = skill.name.split(' ');
     skillButton.append(splitName[0]);
