@@ -16,23 +16,40 @@ const addSkillButton = (parent, skill, addSkillEventListeners) => {
     const splitName = skill.name.split(' ');
     skillButton.append(splitName[0]);
 
-    if (splitName.length > 1) {
-        skillButton.append(document.createElement('br'));
-        skillButton.append(splitName[1]);
-    } else if (splitName.length === 1) {
+    if (splitName.length === 1) {
         skillButton.classList.add('skill-button-single-word');
+    } else {
+        for (let i = 1; i < splitName.length; i++) {
+            skillButton.append(document.createElement('br'));
+            skillButton.append(splitName[i]);
+        }
+        skillButton.style.lineHeight = (50 / splitName.length) + 'px';
     }
 
     addSkillEventListeners(skillButton, skill);
     parent.appendChild(skillButton);
 };
 
-const chooseClass = chosenClass => {
-    Game.setClass(chosenClass);
-    chosenClassNode.innerText = chosenClass.displayName;
-
-    if (chosenClassInfo.classList.contains("no-display")) {
-        chosenClassInfo.classList.remove("no-display");
+const chooseClass = (el, chosenClass) => {
+    if (Game.getClass() !== null) {
+        if (chosenClass === Game.getClass()) {
+            el.classList.remove('selected-box');
+            Game.setClass(null);
+            chosenClassNode.innerText = 'None';
+        } else {
+            // Hoping over-use of class-button doesn't result in this causing de-select issues
+            for (const el of document.getElementsByClassName('class-button')) {
+                el.classList.remove('selected-box');
+            }
+    
+            Game.setClass(chosenClass);
+            chosenClassNode.innerText = chosenClass.displayName;
+            el.classList.add('selected-box');
+        }
+    } else {
+        Game.setClass(chosenClass);
+        chosenClassNode.innerText = chosenClass.displayName;
+        el.classList.add('selected-box');
     }
 };
 
@@ -88,8 +105,9 @@ const finishIntroduction = () => {
 };
 
 const resetClassNotes = () => {
-    classNotesName.innerText = "None";
-    classNotesDescription.innerText = "N/A";
+    if (Game.getClass() === null) {
+        setClassNotes('None', 'N/A');
+    }
 };
 
 const setClassNotes = (name, description) => {
@@ -109,7 +127,7 @@ const transitionScene = () => {
 
         const next = document.createElement('div');
         next.setAttribute('id', 'finish-introduction-button');
-        next.classList.add('class-button', 'hover-pointer');
+        next.classList.add('standard-button', 'hover-pointer');
         next.append('Next');
         next.addEventListener('click', finishIntroduction);
         contentNode.appendChild(next);
@@ -132,6 +150,19 @@ const transitionScene = () => {
         footerNode.appendChild(skillTree);
         footerNode.appendChild(skillCost);
 
+        let skillTextLocked = false;
+        let skillTextLockedBy = null;
+
+        const lockSkillText = skill => {
+            skillTextLocked = true;
+            skillTextLockedBy = skill;
+        };
+
+        const unlockSkillText = () => {
+            skillTextLocked = false;
+            skillTextLockedBy = null;
+        };
+
         const setSkillText = (name, description, tree, cost) => {
             skillNameSpan.innerText = name;
             skillDescriptionSpan.innerText = description;
@@ -139,7 +170,13 @@ const transitionScene = () => {
             skillCostSpan.innerText = cost;
         };
 
-        const clearSkillText = () => setSkillText('None', 'N/A', 'N/A', 'N/A');        
+        const clearSkillText = () => {
+            if (skillTextLocked) {
+                return;
+            }
+
+            setSkillText('None', 'N/A', 'N/A', 'N/A');        
+        };
 
         const addSkillEventListeners = (el, skill) => {
             el.addEventListener(
@@ -159,11 +196,28 @@ const transitionScene = () => {
 
             el.addEventListener(
                 'click',
-                () => Game.setSkill(skill)
+                () => {
+                    if (skillTextLocked && skill.name === skillTextLockedBy) {
+                        unlockSkillText();
+                        el.classList.remove('selected-box');
+                        Game.setSkill(null);
+                        return;
+                    }
+                    
+                    if (skillTextLocked) {
+                        for (const el of document.getElementsByClassName('selected-box')) {
+                            el.classList.remove('selected-box');
+                        }
+                    }
+                        
+                    lockSkillText(skill.name);
+                    el.classList.add('selected-box');
+                    Game.setSkill(skill);
+                }
             );
         };
 
-        for (const skill of Game.getClassSkills()) {
+        for (const skill of Game.getStartingSkills()) {
             addSkillButton(contentNode, skill, addSkillEventListeners);
         }
     }
@@ -172,10 +226,10 @@ const transitionScene = () => {
 for (const characterClass of Object.values(Constants.CLASSES)) {
     const nodeClass = characterClass.cssName + '-class';
     const node = document.getElementById(nodeClass);
-    node.addEventListener('mouseover', () => setClassNotes(characterClass.displayName, characterClass.description));
+    const setNotes = () => setClassNotes(characterClass.displayName, characterClass.description);
+    node.addEventListener('mouseover', setNotes);
     node.addEventListener('mouseout', resetClassNotes);
-    node.addEventListener('click', () => chooseClass(characterClass));
-
+    node.addEventListener('click', () => chooseClass(node, characterClass));
 }
 
 confirmClassButton.addEventListener('click', confirmClass);

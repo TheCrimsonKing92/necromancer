@@ -52,6 +52,8 @@ const getSkillPoints = () => CURRENT_GAME.skillPoints;
 
 const getSkills = () => CURRENT_GAME.chosenSkills;
 
+const getStartingSkills = () => getClassSkills().filter(s => s.cost === 1);
+
 const loadSave = data => {
 
 };
@@ -85,6 +87,7 @@ export {
     getScene,
     getSkillPoints,
     getSkills,
+    getStartingSkills,
     loadSave,
     removeSkillPoints,
     setClass,

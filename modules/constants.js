@@ -16,6 +16,11 @@ const CLASSES = {
     }
 };
 
+const REQUIREMENT_TYPES = [
+    'CHARACTER',
+    'MATERIAL',
+];
+
 const SKILL_TYPES = {
     NECROMANCER_COMBAT: {
         name: 'Necromancer Combat Skills',
@@ -70,7 +75,7 @@ const SKILL_TYPES = {
 const SKILLS = {
     BANISH: {
         name: 'Banish',
-        description: 'Banishes lesser undead from this plane. Has no effect on greater undead.',
+        description: 'Banishes lesser undead from this plane. Has no effect on the living, constructs, or greater undead.',
         skillType: SKILL_TYPES.NECROMANCER_COMBAT,
         cost: 1
     },
@@ -89,10 +94,24 @@ const SKILLS = {
         cost: 1
     },
 
+    CHANNEL: {
+        name: 'Channel',
+        description: 'Channel spirits of the dead to reveal hidden information',
+        skillType: SKILL_TYPES.MEDIUM_UTILITY,
+        cost: 1
+    },
+
     PERSUADE: {
         name: 'Persuade',
-        description: 'Gives you some ability to sway others, whether in conversation or negotiation.',
+        description: 'Some ability to sway others, whether in conversation or negotiation.',
         skillType: SKILL_TYPES.NECROMANCER_UTILITY,
+        cost: 1
+    },
+
+    POSSESSION_POWER: {
+        name: 'Possession: Power',
+        description: 'Become possessed by a willing demon to enhance physical offensive capability.',
+        skillType: SKILL_TYPES.MEDIUM_COMBAT,
         cost: 1
     },
 
@@ -101,6 +120,13 @@ const SKILLS = {
         description: 'Drains some physical and spiritual offensive capability from the target.',
         skillType: SKILL_TYPES.NECROMANCER_COMBAT,
         cost: 1
+    },    
+
+    SUMMON_GREATER_SHADE: {
+        name: 'Summon Greater Shade',
+        description: 'Reaches into the nether to recruit a long-dead soul.',
+        skillType: SKILL_TYPES.SUMMONER_COMBAT,
+        cost: 2
     },
 
     SUMMON_SHADE: {

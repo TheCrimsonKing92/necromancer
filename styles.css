@@ -2,11 +2,15 @@
     cursor: pointer;
 }
 
-.class-button {
+.class-button, .standard-button {
     display: inline-block;
     padding: 5px;
     font-size: larger;
     border: 1px solid black;
+}
+
+.class-button {
+    font-weight: bold;
 }
 
 .game-title {
@@ -27,11 +31,15 @@
     display: none;
 }
 
+.selected-box {
+    box-shadow: 1px 1px 1px 1px black;
+}
+
 .skill-button {
     float: left;
     vertical-align: middle;
-    height: 40px;
-    width: 55px;
+    height: 50px;
+    width: 70px;
     padding: 5px;
     margin-right: 1vw;
     border: 1px solid black;
@@ -39,7 +47,7 @@
 }
 
 .skill-button-single-word {
-    line-height: 40px;
+    line-height: 50px;
 }
 
 .standard-margin-left {
