@@ -2,15 +2,18 @@
     cursor: pointer;
 }
 
-.class-button, .standard-button {
-    display: inline-block;
+.class-button {
+    font-weight: bold;
+}
+
+.class-button, .standard-button, .standard-div-button {    
     padding: 5px;
     font-size: larger;
     border: 1px solid black;
 }
 
-.class-button {
-    font-weight: bold;
+.class-button, .standard-div-button {
+    display: inline-block;
 }
 
 .game-title {
@@ -32,7 +35,7 @@
 }
 
 .selected-box {
-    box-shadow: 1px 1px 1px 1px black;
+    box-shadow: 1px 1px 1px 0px black;
 }
 
 .skill-button {
@@ -50,9 +53,14 @@
     line-height: 50px;
 }
 
+.standard-button {
+    font-family: serif;
+}
+
 .standard-button:disabled {
     border-color: gray;
     color: gray;
+    background-color: rgba(239, 239, 239, 0.3)
 }
 
 .standard-margin-left {

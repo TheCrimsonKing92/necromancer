@@ -142,6 +142,7 @@ const transitionScene = () => {
         firstDiv.appendChild(firstLabel);
 
         const firstInput = document.createElement('input');
+        let firstNameFilled = false;
         firstInput.setAttribute('id', 'first-name-input');
         firstDiv.appendChild(firstInput);
 
@@ -153,12 +154,44 @@ const transitionScene = () => {
         lastDiv.appendChild(lastLabel);
 
         const lastInput = document.createElement('input');
+        let lastNameFilled = false;
         lastInput.setAttribute('id', 'last-name-input');
         lastDiv.appendChild(lastInput);
 
         contentNode.appendChild(lastDiv);
 
-        const next = document.createElement('div');
+        const next = document.createElement('button');        
+        firstInput.addEventListener('input', e => {
+            const value = e.target.value;
+
+            if (value && value.length > 0) {
+                firstNameFilled = true;
+            } else {
+                firstNameFilled = false;
+            }
+
+            if (firstNameFilled && lastNameFilled) {
+                next.disabled = false;
+            } else {
+                next.disabled = true;
+            }
+        });
+        lastInput.addEventListener('input', e => {
+            const value = e.target.value;
+
+            if (value && value.length > 0) {
+                lastNameFilled = true;
+            } else {
+                lastNameFilled = false;
+            }
+
+            if (firstNameFilled && lastNameFilled) {
+                next.disabled = false;
+            } else {
+                next.disabled = true;
+            }
+        });
+
         next.disabled = true;
         next.setAttribute('id', 'finish-introduction-button');
         next.classList.add('standard-button', 'hover-pointer');
