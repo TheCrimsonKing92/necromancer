@@ -137,6 +137,7 @@ const transitionScene = () => {
         contentNode.appendChild(Html.p('Choose your name to begin skill selection.'));
 
         const firstDiv = document.createElement('div');
+        firstDiv.style.marginBottom = '0.5vh';
         const firstLabel = document.createElement('label');
         firstLabel.append('First Name: ');
         firstDiv.appendChild(firstLabel);
@@ -149,11 +150,13 @@ const transitionScene = () => {
         contentNode.appendChild(firstDiv);
 
         const lastDiv = document.createElement('div');
+        lastDiv.style.marginBottom = '1vh';
         const lastLabel = document.createElement('label');
         lastLabel.append('Last Name: ');
         lastDiv.appendChild(lastLabel);
 
         const lastInput = document.createElement('input');
+        lastInput.style.marginLeft = '2px';
         let lastNameFilled = false;
         lastInput.setAttribute('id', 'last-name-input');
         lastDiv.appendChild(lastInput);
