@@ -133,13 +133,43 @@ const transitionScene = () => {
 
     if (currentScene === "INTRODUCTION") {
         contentNode.appendChild(Html.h2('Introduction'));
-        contentNode.appendChild(Html.pStrongFirst('Necromancer currently supports only limited functionality: character skill management and random battles. Click below to begin by selecting your first skill.'));
+        contentNode.appendChild(Html.pStrongFirst('Necromancer currently supports only limited functionality: character skill management and random battles.'));
+        contentNode.appendChild(Html.p('Choose your name to begin skill selection.'));
+
+        const firstDiv = document.createElement('div');
+        const firstLabel = document.createElement('label');
+        firstLabel.append('First Name: ');
+        firstDiv.appendChild(firstLabel);
+
+        const firstInput = document.createElement('input');
+        firstInput.setAttribute('id', 'first-name-input');
+        firstDiv.appendChild(firstInput);
+
+        contentNode.appendChild(firstDiv);
+
+        const lastDiv = document.createElement('div');
+        const lastLabel = document.createElement('label');
+        lastLabel.append('Last Name: ');
+        lastDiv.appendChild(lastLabel);
+
+        const lastInput = document.createElement('input');
+        lastInput.setAttribute('id', 'last-name-input');
+        lastDiv.appendChild(lastInput);
+
+        contentNode.appendChild(lastDiv);
 
         const next = document.createElement('div');
+        next.disabled = true;
         next.setAttribute('id', 'finish-introduction-button');
         next.classList.add('standard-button', 'hover-pointer');
         next.append('Next');
-        next.addEventListener('click', finishIntroduction);
+        next.addEventListener('click', () => {
+            if (next.disabled) {
+                return;
+            }
+
+            finishIntroduction();
+        });
         contentNode.appendChild(next);
     } else if (currentScene === "CHARACTER") {
         contentNode.appendChild(Html.h2('Skills'));

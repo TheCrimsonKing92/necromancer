@@ -6,6 +6,8 @@ const SCENES = [
 
 const GAME_STATE_STRUCTURE = {
     classChosen: false,
+    characterFirstName: null,
+    characterLastName: null,
     chosenClass: null,
     chosenSkills: [],
     currentScene: SCENES[0],
@@ -44,7 +46,11 @@ const getData = () => {
 
 };
 
+const getFirstName = () => CURRENT_GAME.characterFirstName;
+
 const getGame = () => CURRENT_GAME;
+
+const getLastName = () => CURRENT_GAME.characterLastName;
 
 const getScene = () => CURRENT_GAME.currentScene;
 
@@ -66,6 +72,10 @@ const setClass = chosenClass => {
     CURRENT_GAME.chosenClass = chosenClass;
 };
 
+const setFirstName = firstName => CURRENT_GAME.characterFirstName = firstName;
+
+const setLastName = lastName => CURRENT_GAME.characterLastName = lastName;
+
 const setSkill = skill => {
     const index = CURRENT_GAME.chosenSkills.findIndex(s => s.name === skill.name);
 
@@ -83,7 +93,9 @@ export {
     getClass,
     getClassSkills,
     getData,
+    getFirstName,
     getGame,
+    getLastName,
     getScene,
     getSkillPoints,
     getSkills,
@@ -91,5 +103,7 @@ export {
     loadSave,
     removeSkillPoints,
     setClass,
+    setFirstName,
+    setLastName,
     setSkill
 };

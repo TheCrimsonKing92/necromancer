@@ -50,6 +50,11 @@
     line-height: 50px;
 }
 
+.standard-button:disabled {
+    border-color: gray;
+    color: gray;
+}
+
 .standard-margin-left {
     margin-left: 1vw;
 }
