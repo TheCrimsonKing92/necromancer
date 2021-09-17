@@ -1,4 +1,4 @@
-import { SKILLS } from "./constants.js";
+import * as SKILLS from './constants/skills.js';
 
 const SCENES = [
     "CLASS SELECTION", "INTRODUCTION", "CHARACTER", "BATTLE", "NARRATIVE"

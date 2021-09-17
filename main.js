@@ -1,4 +1,5 @@
-import * as Constants from './modules/constants.js';
+import * as CLASSES from './modules/constants/classes.js';
+import * as SKILLS from './modules/constants/skills.js';
 import * as Game from './modules/game.js';
 import * as Html from './modules/html.js';
 import * as Storage from './modules/storage.js';
@@ -37,7 +38,6 @@ const chooseClass = (el, chosenClass) => {
             Game.setClass(null);
             chosenClassNode.innerText = 'None';
         } else {
-            // Hoping over-use of class-button doesn't result in this causing de-select issues
             for (const el of document.getElementsByClassName('class-button')) {
                 el.classList.remove('selected-box');
             }
@@ -56,6 +56,16 @@ const chooseClass = (el, chosenClass) => {
 const confirmClass = () => {
     Game.confirmClass();
     transitionScene();
+};
+
+const createClassButton = characterClass => {
+    console.log('Creating class button for: ', characterClass);
+    const nodeClass = characterClass.cssName + '-class';
+    const node = document.getElementById(nodeClass);
+    const setNotes = () => setClassNotes(characterClass.displayName, characterClass.description);
+    node.addEventListener('mouseover', setNotes);
+    node.addEventListener('mouseout', resetClassNotes);
+    node.addEventListener('click', () => chooseClass(node, characterClass));
 };
 
 const createSkillButton = () => {
@@ -185,7 +195,7 @@ const transitionScene = () => {
                         skill.name,
                         skill.description,
                         skill.skillType.name,
-                        skill.cost + (skill.cost === 1 ? ' skill point' : ' skill points')
+                        skill.cost + ' skill ' + (skill.cost === 1 ? ' point' : ' points')
                     )
             );
 
@@ -223,13 +233,5 @@ const transitionScene = () => {
     }
 };
 
-for (const characterClass of Object.values(Constants.CLASSES)) {
-    const nodeClass = characterClass.cssName + '-class';
-    const node = document.getElementById(nodeClass);
-    const setNotes = () => setClassNotes(characterClass.displayName, characterClass.description);
-    node.addEventListener('mouseover', setNotes);
-    node.addEventListener('mouseout', resetClassNotes);
-    node.addEventListener('click', () => chooseClass(node, characterClass));
-}
-
+Object.values(CLASSES).forEach(createClassButton);
 confirmClassButton.addEventListener('click', confirmClass);
