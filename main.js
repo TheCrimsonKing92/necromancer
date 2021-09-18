@@ -177,6 +177,7 @@ const transitionScene = () => {
 
             if (value && value.length > 0) {
                 firstNameFilled = true;
+                Game.setFirstName(value);
             } else {
                 firstNameFilled = false;
             }
@@ -192,6 +193,7 @@ const transitionScene = () => {
 
             if (value && value.length > 0) {
                 lastNameFilled = true;
+                Game.setLastName(value);
             } else {
                 lastNameFilled = false;
             }
@@ -217,7 +219,7 @@ const transitionScene = () => {
         contentNode.appendChild(next);
     } else if (currentScene === "CHARACTER") {
         contentNode.appendChild(Html.h2('Skills'));
-        contentNode.appendChild(Html.pStrongFirst('Choose your first skill below.'));
+        contentNode.appendChild(Html.pStrongFirst(`Choose the first skill for ${Game.getFullName()}, the novice ${Game.getClass().displayName}.`));
         
         const [
             skillName,

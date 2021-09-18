@@ -48,6 +48,8 @@ const getData = () => {
 
 const getFirstName = () => CURRENT_GAME.characterFirstName;
 
+const getFullName = () => `${getFirstName()} ${getLastName()}`;
+
 const getGame = () => CURRENT_GAME;
 
 const getLastName = () => CURRENT_GAME.characterLastName;
@@ -94,6 +96,7 @@ export {
     getClassSkills,
     getData,
     getFirstName,
+    getFullName,
     getGame,
     getLastName,
     getScene,
