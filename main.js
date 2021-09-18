@@ -51,11 +51,19 @@ const chooseClass = (el, chosenClass) => {
         chosenClassNode.innerText = chosenClass.displayName;
         el.classList.add('selected-box');
     }
+
+    if (Game.getClass() === null) {
+        confirmClassButton.disabled = true;
+    } else {
+        confirmClassButton.disabled = false;
+    }
 };
 
 const confirmClass = () => {
-    Game.confirmClass();
-    transitionScene();
+    if (Game.getClass() != null) {
+        Game.confirmClass();
+        transitionScene();
+    }    
 };
 
 const createClassButton = characterClass => {
