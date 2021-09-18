@@ -2,6 +2,10 @@
     cursor: pointer;
 }
 
+.hover-pointer:disabled {
+    cursor: default;
+}
+
 .class-button {
     font-weight: bold;
 }
