@@ -79,6 +79,10 @@ const setFirstName = firstName => CURRENT_GAME.characterFirstName = firstName;
 const setLastName = lastName => CURRENT_GAME.characterLastName = lastName;
 
 const setSkill = skill => {
+    if (skill === null) {
+        return;
+    }
+    
     const index = CURRENT_GAME.chosenSkills.findIndex(s => s.name === skill.name);
 
     if (index !== -1) {

@@ -67,7 +67,6 @@ const confirmClass = () => {
 };
 
 const createClassButton = characterClass => {
-    console.log('Creating class button for: ', characterClass);
     const nodeClass = characterClass.cssName + '-class';
     const node = document.getElementById(nodeClass);
     const setNotes = () => setClassNotes(characterClass.displayName, characterClass.description);
@@ -311,3 +310,8 @@ const transitionScene = () => {
 
 Object.values(CLASSES).forEach(createClassButton);
 confirmClassButton.addEventListener('click', confirmClass);
+document.addEventListener('mousedown', e => {
+    if (e.detail > 1) {
+        e.preventDefault();
+    }
+}, false);
