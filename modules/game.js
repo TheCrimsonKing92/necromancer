@@ -31,6 +31,17 @@ const finishIntroduction = () => {
     CURRENT_GAME.currentScene = SCENES[2];
 };
 
+const getAvailableSkills = () => {
+    const previouslyChosen = getChosenSkills();
+    const classSkills = getClassSkills();
+    const genericSkills = getSkills();
+
+    return genericSkills.filter(i => !previouslyChosen.includes(i))
+                        .concat(classSkills.filter(i => !previouslyChosen.includes(i)));
+};
+
+const getChosenSkills = () => CURRENT_GAME.chosenSkills;
+
 const getClass = () => CURRENT_GAME.chosenClass;
 
 const getClassSkills = () => {
@@ -56,9 +67,9 @@ const getLastName = () => CURRENT_GAME.characterLastName;
 
 const getScene = () => CURRENT_GAME.currentScene;
 
-const getSkillPoints = () => CURRENT_GAME.skillPoints;
+const getSkills = () => Object.values(SKILLS).filter(s => !s.skillType.isClassSpecific);
 
-const getSkills = () => CURRENT_GAME.chosenSkills;
+const getSkillPoints = () => CURRENT_GAME.skillPoints;
 
 const getStartingSkills = () => getClassSkills().filter(s => s.cost === 1);
 
@@ -82,7 +93,7 @@ const setSkill = skill => {
     if (skill === null) {
         return;
     }
-    
+
     const index = CURRENT_GAME.chosenSkills.findIndex(s => s.name === skill.name);
 
     if (index !== -1) {
@@ -96,6 +107,7 @@ export {
     addSkillPoints,
     confirmClass,
     finishIntroduction,
+    getChosenSkills,
     getClass,
     getClassSkills,
     getData,
@@ -104,8 +116,8 @@ export {
     getGame,
     getLastName,
     getScene,
-    getSkillPoints,
     getSkills,
+    getSkillPoints,
     getStartingSkills,
     loadSave,
     removeSkillPoints,
