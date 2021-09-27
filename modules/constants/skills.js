@@ -12,6 +12,18 @@ const SELF_REQUIREMENTS = {
 };
 
 const SKILL_TYPES = {
+    COMBAT: {
+        name: 'Combat Skills',
+        isCombat: true,
+        isClassSpecific: false,
+        classes: null
+    },
+    UTILITY: {
+        name: 'Utility Skills',
+        isCombat: false,
+        isClassSpecific: false,
+        classes: null
+    },
     NECROMANCER_COMBAT: {
         name: 'Necromancer Combat Skills',
         isCombat: true,
@@ -62,81 +74,76 @@ const SKILL_TYPES = {
     }
 };
 
-const BANISH = {
-    name: 'Banish',
-    description: 'Banishes lesser undead from this plane. Has no effect on the living, constructs, or greater undead.',
-    skillType: SKILL_TYPES.NECROMANCER_COMBAT,
-    cost: 1,
-    requirements: null
-};
+const skill = (name, description, skillType, cost, requirements = null) => ({
+    name,
+    description,
+    skillType,
+    cost,
+    requirements
+});
 
-const BREW_POTION = {
-    name: 'Brew Potion',
-    description: 'Unlocks potion-brewing, allowing the thaumaturgist to concoct various potions, useful in and out of combat.',
-    skillType: SKILL_TYPES.THAUMATURGIST_UTILITY,
-    cost: 1,
-    requirements: null
-};
+const genericSkill = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.UTILITY, cost, requirements);
+const genericCombatSkill = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.COMBAT, cost, requirements);
+const mediumSkill = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.MEDIUM_UTILITY, cost, requirements);
+const mediumCombat = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.MEDIUM_COMBAT, cost, requirements);
+const necromancerSkill = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.NECROMANCER_UTILITY, cost, requirements);
+const necromancerCombat = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.NECROMANCER_COMBAT, cost, requirements);
+const summonerSkill = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.SUMMONER_UTILITY, cost, requirements);
+const summonerCombat = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.SUMMONER_COMBAT, cost, requirements);
+const thaumaturgistSkill = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.THAUMATURGIST_UTILITY, cost, requirements);
+const thaumaturgistCombat = (name, description, cost = 1, requirements = null) => skill(name, description, SKILL_TYPES.THAUMATURGIST_COMBAT, cost, requirements);
 
-const BONE_SHIELD = {
-    name: 'Bone Shield',
-    description: 'Provides a shield with limited health, effective against physical damage.',
-    skillType: SKILL_TYPES.NECROMANCER_COMBAT,
-    cost: 1,
-    requirements: {
-        SELF: SELF_REQUIREMENTS.NOT_CAST
-    }
-};
+const BANISH = genericCombatSkill(
+    'Banish',
+    'Banishes lesser undead from this plane. Has no effect on the living, constructs, or greater undead.'
+);
 
-const CHANNEL = {
-    name: 'Channel',
-    description: 'Channel spirits of the dead to reveal hidden information',
-    skillType: SKILL_TYPES.MEDIUM_UTILITY,
-    cost: 1,
-    requirements: null
-};
+const BARTER = genericSkill('Barter', 'Allows negotiation of better deals in transactions');
 
-const PERSUADE = {
-    name: 'Persuade',
-    description: 'Some ability to sway others, whether in conversation or negotiation.',
-    skillType: SKILL_TYPES.NECROMANCER_UTILITY,
-    cost: 1,
-    requirements: null
-};
+const BREW_POTION = thaumaturgistSkill(
+    'Brew Potion',
+    'Unlocks potion-brewing, allowing the thaumaturgist to concoct various potions, useful in and out of combat.'
+);
 
-const POSSESSION_POWER = {
-    name: 'Possession: Power',
-    description: 'Become possessed by a willing demon to enhance physical offensive capability.',
-    skillType: SKILL_TYPES.MEDIUM_COMBAT,
-    cost: 1,
-    requirements: {
-        SELF: SELF_REQUIREMENTS.NOT_CAST
-    }
-};
+const BONE_SHIELD = necromancerCombat(
+    'Bone Shield',
+    'Provides a shield with limited health, effective against physical damage.',
+    1,
+    { SELF: SELF_REQUIREMENTS.NOT_CAST }
+);
 
-const SAP_WILL = {
-    name: 'Sap Will',
-    description: 'Drains some physical and spiritual offensive capability from the target.',
-    skillType: SKILL_TYPES.NECROMANCER_COMBAT,
-    cost: 1,
-    requirements: null
-};
+const CHANNEL = mediumSkill(
+    'Channel',
+    'Channel spirits of the dead to reveal hidden information'
+);
 
-const SUMMON_GREATER_SHADE = {
-    name: 'Summon Greater Shade',
-    description: 'Reaches into the nether to recruit a long-dead soul.',
-    skillType: SKILL_TYPES.SUMMONER_COMBAT,
-    cost: 2,
-    requirements: null
-};
+const PERSUADE = genericSkill(
+    'Persuade',
+    'Some ability to sway others, whether in conversation or negotiation.'
+);
 
-const SUMMON_SHADE = {
-    name: 'Summon Shade',
-    description: 'Reaches into the nether to recruit a recently-deceased soul.',
-    skillType: SKILL_TYPES.SUMMONER_COMBAT,
-    cost: 1,
-    requirements: null
-};
+const POSSESSION_POWER = mediumCombat(
+    'Possession: Power',
+    'Become possessed by a willing demon to enhance physical offensive capability.',
+    1,
+    { SELF: SELF_REQUIREMENTS.NOT_CAST }
+);
+
+const SAP_WILL = necromancerCombat(
+    'Sap Will',
+    'Drains some physical and spiritual offensive capability from the target.'
+);
+
+const SUMMON_GREATER_SHADE = summonerCombat(
+    'Summon Greater Shade',
+    'Reaches into the nether to recruit a long-dead soul.',
+    2
+);
+
+const SUMMON_SHADE = summonerCombat(
+    'Summon Shade',
+    'Reaches into the nether to recruit a recently-deceased soul.'
+);
 
 export {
     BANISH,
