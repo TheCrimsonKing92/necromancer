@@ -13,43 +13,31 @@ const confirmClassButton = document.getElementById('confirm-class-button');
 const footerNode = document.getElementById('scene-footer');
 
 const addSkillButton = (parent, skill, addSkillEventListeners) => {
-    const skillButton = createSkillButton();
-    const splitName = skill.name.split(' ');
-    skillButton.append(splitName[0]);
-
-    if (splitName.length === 1) {
-        skillButton.classList.add('skill-button-single-word');
-    } else {
-        for (let i = 1; i < splitName.length; i++) {
-            skillButton.append(document.createElement('br'));
-            skillButton.append(splitName[i]);
-        }
-        skillButton.style.lineHeight = (50 / splitName.length) + 'px';
-    }
-
+    const skillButton = Html.createSkillButton(skill.name);
     addSkillEventListeners(skillButton, skill);
+
     parent.appendChild(skillButton);
 };
 
 const chooseClass = (el, chosenClass) => {
     if (Game.getClass() !== null) {
         if (chosenClass === Game.getClass()) {
-            el.classList.remove('selected-box');
-            Game.setClass(null);
-            chosenClassNode.innerText = 'None';
+            Html.unselect(el, () => {
+                Game.setClass(null);
+                chosenClassNode.innerText = 'None';
+            });
         } else {
-            for (const el of document.getElementsByClassName('class-button')) {
-                el.classList.remove('selected-box');
-            }
-    
-            Game.setClass(chosenClass);
-            chosenClassNode.innerText = chosenClass.displayName;
-            el.classList.add('selected-box');
+            Html.unselectAll(document.getElementsByClassName('class-button'), () => {
+                Game.setClass(chosenClass);
+                chosenClassNode.innerText = chosenClass.displayName;
+                Html.select(el, null);
+            });
         }
     } else {
-        Game.setClass(chosenClass);
-        chosenClassNode.innerText = chosenClass.displayName;
-        el.classList.add('selected-box');
+        Html.select(el, () => {
+            Game.setClass(chosenClass);
+            chosenClassNode.innerText = chosenClass.displayName;
+        });
     }
 
     if (Game.getClass() === null) {
@@ -75,17 +63,11 @@ const createClassButton = characterClass => {
     node.addEventListener('click', () => chooseClass(node, characterClass));
 };
 
-const createSkillButton = () => {
-    const div = document.createElement('div');
-    div.classList.add('skill-button', 'hover-pointer');
-    return div;
-};
-
 const createSkillContainers = () => {
-    const [skillName, skillNameSpan] = createValueContainer('Skill: ', 'skill-name', 'None');
-    const [skillDescription, skillDescriptionSpan] = createValueContainer('Description: ', 'skill-description', 'N/A');
-    const [skillTree, skillTreeSpan] = createValueContainer('Skill Tree: ', 'skill-tree', 'N/A');
-    const [skillCost, skillCostSpan] = createValueContainer('Skill Cost: ', 'skill-cost', 'N/A');
+    const [skillName, skillNameSpan] = Html.createValueContainer('Skill: ', 'skill-name', 'None');
+    const [skillDescription, skillDescriptionSpan] = Html.createValueContainer('Description: ', 'skill-description', 'N/A');
+    const [skillTree, skillTreeSpan] = Html.createValueContainer('Skill Tree: ', 'skill-tree', 'N/A');
+    const [skillCost, skillCostSpan] = Html.createValueContainer('Skill Cost: ', 'skill-cost', 'N/A');
 
     return [
         skillName,
@@ -97,23 +79,6 @@ const createSkillContainers = () => {
         skillCost,
         skillCostSpan
     ];
-};
-
-const createValueContainer = (label, baseId, defaultValue) => {
-    const container = document.createElement('p');
-    container.setAttribute('id', baseId + '-container');
-
-    const containerLabel = document.createElement('strong');
-    containerLabel.setAttribute('id', baseId + '-label');
-    containerLabel.append(label);
-
-    const containerSpan = document.createElement('span');
-    containerSpan.setAttribute('id', baseId);
-    containerSpan.append(defaultValue);
-
-    container.append(containerLabel, containerSpan);
-
-    return [container, containerSpan];
 };
 
 const finishIntroduction = () => {
@@ -139,9 +104,12 @@ const transitionScene = () => {
     Html.removeAllChildren(footerNode);
 
     if (currentScene === "INTRODUCTION") {
-        contentNode.appendChild(Html.h2('Introduction'));
-        contentNode.appendChild(Html.pStrongFirst('Necromancer currently supports only limited functionality: character skill management and random battles.'));
-        contentNode.appendChild(Html.p('Choose your name to begin skill selection.'));
+        Html.appendChildren(
+            contentNode,
+            Html.h2('Introduction'),
+            Html.pStrongFirst('Necromancer currently supports only limited functionality: character skill management and random battles.'),
+            Html.p('Choose your name to begin skill selection.')
+        );
 
         const firstDiv = document.createElement('div');
         firstDiv.style.marginBottom = '0.5vh';
@@ -217,8 +185,11 @@ const transitionScene = () => {
         });
         contentNode.appendChild(next);
     } else if (currentScene === "CHARACTER") {
-        contentNode.appendChild(Html.h2('Skills'));
-        contentNode.appendChild(Html.pStrongFirst(`Choose the first skill for ${Game.getFullName()}, the novice ${Game.getClass().displayName}.`));
+        Html.appendChildren(
+            contentNode,
+            Html.h2('Skills'),
+            Html.pStrongFirst(`Choose the first skill for ${Game.getFullName()}, the novice ${Game.getClass().displayName}.`)
+        )
         
         const [
             skillName,
@@ -230,10 +201,14 @@ const transitionScene = () => {
             skillCost,
             skillCostSpan
         ] = createSkillContainers();
-        footerNode.appendChild(skillName);
-        footerNode.appendChild(skillDescription);
-        footerNode.appendChild(skillTree);
-        footerNode.appendChild(skillCost);
+
+        Html.appendChildren(
+            footerNode,
+            skillName,
+            skillDescription,
+            skillTree,
+            skillCost
+        );
 
         let skillTextLocked = false;
         let skillTextLockedBy = null;
