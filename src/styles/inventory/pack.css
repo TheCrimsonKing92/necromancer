@@ -1,0 +1,137 @@
+.pack-list {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.pack-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pack-item.is-singular {
+  padding-inline: 0.9rem;
+  border-inline-start: 2px solid var(--line-strong);
+  background: linear-gradient(90deg, rgba(214, 199, 167, 0.045), transparent 42%);
+}
+
+.pack-item__overview {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+}
+
+.pack-item__copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.pack-item__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pack-item__heading span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--blood-bright);
+  font-family: var(--sans);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.pack-item__heading .item-provenance,
+.equipment-slot .item-provenance {
+  width: fit-content;
+  padding: 0.12rem 0.28rem;
+  border: 1px solid var(--line-strong);
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.pack-item__heading h3 {
+  margin: 0;
+  font-size: 1.18rem;
+}
+
+.pack-item__heading > strong {
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 400;
+}
+
+.pack-item__copy > p {
+  max-width: 50rem;
+  margin-bottom: 0.8rem;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.pack-item__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.59rem;
+}
+
+.pack-item__actions {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.equip-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  background: rgba(214, 199, 167, 0.02);
+}
+
+.equip-option > div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.equip-option span {
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.equip-option small {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  line-height: 1.5;
+}
+
+.equip-option .item-action {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.inventory-empty {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-style: italic;
+}

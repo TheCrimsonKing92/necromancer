@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "status": "nonproduction-audition",
+  "generator": {
+    "provider": "local-kokoro",
+    "library": "kokoro",
+    "libraryVersion": "0.9.4",
+    "modelId": "hexgrad/Kokoro-82M",
+    "modelRevision": "main",
+    "modelFile": "kokoro-v1_0.pth",
+    "modelSha256Prefix": "496dba11",
+    "configFile": "config.json",
+    "license": "Apache-2.0",
+    "use": "development-audition-only",
+    "syntheticVoice": true,
+    "sampleRateHz": 24000,
+    "seed": 190421
+  },
+  "output": {
+    "root": "output/voice-auditions/kokoro",
+    "filePattern": "{characterId}.{lineId}.{candidateId}.s{speedPercent}.{textHash8}.wav",
+    "indexFile": "audition-index.json"
+  },
+  "characters": [
+    {
+      "id": "sera-vale",
+      "displayName": "Sera Vale",
+      "directionRevision": 1,
+      "direction": "A road reeve speaking through smoke and exhaustion without surrendering command. Low-to-mid register, soot-roughened but not a theatrical rasp. Keep the pace economical and the consonants clipped. She does not plead, perform menace, or claim knowledge she does not possess. Concern for the households appears as precision rather than sentimentality.",
+      "directionSha256": "2b44a48c5915726bff19848c64113ac01e78b2bbd5cf9bdfe8a16a2caf506d15",
+      "candidates": [
+        { "id": "emma-094", "voiceId": "bf_emma", "languageCode": "b", "speed": 0.94, "voiceSha256Prefix": "d0a423de" },
+        { "id": "bella-095", "voiceId": "af_bella", "languageCode": "a", "speed": 0.95, "voiceSha256Prefix": "8cb64e02" },
+        { "id": "isabella-096", "voiceId": "bf_isabella", "languageCode": "b", "speed": 0.96, "voiceSha256Prefix": "cdd4c370" }
+      ]
+    },
+    {
+      "id": "halwen-sar",
+      "displayName": "Marshal Halwen Sar",
+      "directionRevision": 1,
+      "direction": "A campaign marshal whose courtesy applies pressure. Low, steady, educated delivery; measured enough that every condition lands. Avoid a shouted military stereotype and villainous relish. Halwen believes the offered bargain is practical, notices who witnesses it, and lets threat reside in exact wording rather than volume.",
+      "directionSha256": "73545c31faf6477d691a1ff7f7fe8e5e17ee1f0b876a015dbb846245d1b9cb9e",
+      "candidates": [
+        { "id": "emma-090", "voiceId": "bf_emma", "languageCode": "b", "speed": 0.90, "voiceSha256Prefix": "d0a423de" },
+        { "id": "kore-091", "voiceId": "af_kore", "languageCode": "a", "speed": 0.91, "voiceSha256Prefix": "8bfbc512" },
+        { "id": "heart-089", "voiceId": "af_heart", "languageCode": "a", "speed": 0.89, "voiceSha256Prefix": "0ab5709b" }
+      ]
+    },
+    {
+      "id": "air-speaker",
+      "displayName": "The air-speaker",
+      "directionRevision": 1,
+      "direction": "A clean, sex-ambiguous, nearly breathless speaking voice: patient, formal, and inhumanly certain. No demon growl and no ethereal whisper. Clause endings linger slightly too long. The speaker treats possession as a physical fact, not a threat. A restrained delayed double may suggest that the voice arrives between separate bronze vanes.",
+      "directionSha256": "7a4e7288ae87e8042648ff3c4557ca6ac6e743b7fd8f65f1661a7e30c4b7b37b",
+      "treatment": {
+        "kind": "delayed-double",
+        "delayMs": 28,
+        "gain": 0.18,
+        "rateRatio": 0.996
+      },
+      "candidates": [
+        { "id": "onyx-090", "voiceId": "am_onyx", "languageCode": "a", "speed": 0.90, "voiceSha256Prefix": "e8452be1" },
+        { "id": "kore-088", "voiceId": "af_kore", "languageCode": "a", "speed": 0.88, "voiceSha256Prefix": "8bfbc512" },
+        { "id": "emma-086", "voiceId": "bf_emma", "languageCode": "b", "speed": 0.86, "voiceSha256Prefix": "d0a423de" }
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "id": "fire-road-arrival",
+      "characterId": "sera-vale",
+      "exactText": "The lead wagon broke its axle against the bridge shoulder. I can move the six households once the lane is open, but the old west brace has split. The fire will reach them before my crews can clear both.",
+      "textSha256": "f5c8e387cda3bf631bd0e71b30ec36fcccc4688fdf9cf61a0b3ef6b9f42ada00",
+      "source": { "path": "src/ui/development-prototypes/fire-road/road-under-ash-conversations.ts", "locator": "FIRE_ROAD_ARRIVAL_CONVERSATION beat need" }
+    },
+    {
+      "id": "fire-road-carter",
+      "characterId": "sera-vale",
+      "exactText": "The carter died trying to free his own wagon. I saw him beneath the axle before the smoke covered the yard. He knew the axle and load better than anyone left here. No one has reached his body since.",
+      "textSha256": "4916fdcc1dec7e289d9dfb67a063544b1cbfd1d06f075137e83d23b433d3b061",
+      "source": { "path": "src/ui/development-prototypes/fire-road/road-under-ash-conversations.ts", "locator": "FIRE_ROAD_ARRIVAL_CONVERSATION beat dead" }
+    },
+    {
+      "id": "fire-road-hound",
+      "characterId": "sera-vale",
+      "exactText": "Three drovers saw something moving through the burning scrub. One swears it wore black iron at the throat; another saw only charred flesh. I have not been close enough to settle either claim. If it reaches the road, keep it off the households.",
+      "textSha256": "3a51d7e2bc0ea00fbd82222c7ed00298f1c74e66c8fd6c28609a84de98fc56fd",
+      "source": { "path": "src/ui/development-prototypes/fire-road/road-under-ash-conversations.ts", "locator": "FIRE_ROAD_ARRIVAL_CONVERSATION beat hound" }
+    },
+    {
+      "id": "conduit-opening-terms",
+      "characterId": "halwen-sar",
+      "exactText": "My Sovereign will take the weight. Your masons will make the cut. When the last household clears, our column crosses this road.",
+      "textSha256": "b6edd00109fbe01545d7e2c41f83b961793a2da8b6f2e9391ef03d516ea8fb6d",
+      "source": { "path": "src/game/development-prototypes/siege-sovereign/failing-conduit-copy.ts", "locator": "FAILING_CONDUIT_INTRODUCTION Halwen voice" }
+    },
+    {
+      "id": "breach-yard-command",
+      "characterId": "halwen-sar",
+      "exactText": "Keep Toman alive. Keep one shore standing. Then choose whose road this becomes.",
+      "textSha256": "83ba7ba9adcf82645cd9240d570117a943c8668e939c53e7522bbee4935778ee",
+      "source": { "path": "src/game/development-prototypes/siege-sovereign/breach-yard.ts", "locator": "initial eventLog" }
+    },
+    {
+      "id": "conduit-limited-term",
+      "characterId": "halwen-sar",
+      "exactText": "One day. One column. No claim after.",
+      "textSha256": "45f20bd3affe679f69e475c59545c9a4cef316ae6f4b5f312b7d3776f5b17088",
+      "source": { "path": "src/game/development-prototypes/siege-sovereign/failing-conduit.ts", "locator": "counter-neutral result" }
+    },
+    {
+      "id": "ordinance-opening",
+      "characterId": "air-speaker",
+      "exactText": "I keep what is entered. I do not spend shelter upon the uncounted.",
+      "textSha256": "ee86e08d74c9066f145640c76b9c9e9694be6cd949abe06b9dcf2c5e9f11cb20",
+      "source": { "path": "src/game/content-packs/integration/moving-shade-fire-road/scene.ts", "locator": "airSpeakerParagraph fallback" }
+    },
+    {
+      "id": "ordinance-refusal",
+      "characterId": "air-speaker",
+      "exactText": "Shade belongs to subjects. A season ends. Possession does not.",
+      "textSha256": "f2aaa22469459f5a71b1f1fe5338367bceafa0e1a82f86997b0b26eb4f54a65b",
+      "source": { "path": "src/game/content-packs/integration/moving-shade-fire-road/scene.ts", "locator": "airSpeakerParagraph refused counteroffer" }
+    },
+    {
+      "id": "ordinance-season",
+      "characterId": "air-speaker",
+      "exactText": "No names entered. At first frost, shade and soldiers pass on.",
+      "textSha256": "90fa616ee8cd2eef0eba7441bca6c325b2012246a2abf369a34660a26dce7eb6",
+      "source": { "path": "src/game/content-packs/integration/moving-shade-fire-road/scene.ts", "locator": "season-protection accepted result" }
+    }
+  ]
+}

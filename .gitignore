@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+.playwright-cli/
+output/playwright/
+output/playwright-gpu/
+output/wpr-gpu/
+.DS_Store
+*.local
+*.log
+.voice-tools/
+output/voice-auditions/
+
+# Run and tool artifacts
+output/
+.performance-coverage/
+.codex-remote-attachments/

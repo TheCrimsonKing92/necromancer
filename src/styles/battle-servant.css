@@ -1,0 +1,114 @@
+.servant-command-section,
+.servant-dossier {
+  margin-bottom: 3.5rem;
+}
+
+.servant-command-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.servant-command {
+  display: grid;
+  gap: 0.55rem;
+  min-height: 6.5rem;
+  padding: 1rem;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+  background: rgba(156, 130, 182, 0.045);
+  cursor: pointer;
+}
+
+.servant-command:hover:not(:disabled) {
+  background: rgba(156, 130, 182, 0.09);
+  box-shadow: inset 0 -2px 0 #b9a0cf;
+}
+
+.servant-command[aria-pressed="true"] {
+  box-shadow: inset 3px 0 0 var(--spirit);
+}
+
+.servant-direction-summary {
+  margin-bottom: 0.75rem;
+}
+
+.servant-direction-change > summary {
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  color: var(--bone);
+  cursor: pointer;
+}
+
+.servant-command:disabled {
+  opacity: 0.6;
+}
+
+.servant-command small {
+  color: var(--ink-faint);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.servant-dossier {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.servant-dossier summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  color: var(--bone);
+  cursor: pointer;
+}
+
+.servant-dossier summary > span:first-child {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.servant-dossier summary small,
+.servant-dossier summary > span:last-child {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.servant-dossier dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 1rem;
+  background: var(--line);
+}
+
+.servant-dossier dl div {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.servant-dossier dt {
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.servant-dossier dd {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}

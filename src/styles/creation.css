@@ -1,0 +1,225 @@
+/* Shared pages */
+
+.page {
+  flex: 1;
+  width: min(100%, 1260px);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.page-heading {
+  max-width: 54rem;
+  margin-bottom: 3.5rem;
+}
+
+.page-heading h1,
+.story-panel h1,
+.battle-heading h1,
+.ending h1,
+.missing-state h1 {
+  margin-bottom: 1.15rem;
+  font-size: clamp(2.7rem, 6vw, 5.6rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.page-heading > p:last-child {
+  max-width: 39rem;
+  color: var(--ink-muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+/* Character creation */
+
+.creation-form {
+  display: grid;
+  gap: 3.5rem;
+}
+
+.field {
+  max-width: 38rem;
+}
+
+.field label,
+.sex-fieldset legend,
+.tradition-fieldset legend {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.field__hint {
+  margin-bottom: 1rem;
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+}
+
+.field input {
+  width: 100%;
+  padding: 0.65rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  background: transparent;
+}
+
+.field input:focus {
+  border-color: var(--bone);
+  outline-offset: 8px;
+}
+
+.sex-fieldset,
+.tradition-fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sex-fieldset legend,
+.tradition-fieldset legend {
+  margin-bottom: 1rem;
+}
+
+.sex-grid {
+  display: grid;
+  max-width: 38rem;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.sex-option {
+  position: relative;
+  display: grid;
+  min-height: 4rem;
+  place-items: center;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sex-option:hover {
+  background: rgba(214, 199, 167, 0.035);
+}
+
+.sex-option:has(input:checked) {
+  color: var(--bone-bright);
+  background: rgba(214, 199, 167, 0.07);
+  box-shadow: inset 0 0 0 1px var(--bone);
+}
+
+.sex-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.sex-option:has(input:focus-visible) {
+  outline: 2px solid var(--bone-bright);
+  outline-offset: 3px;
+}
+
+.tradition-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.tradition-card {
+  position: relative;
+  display: flex;
+  min-height: 23rem;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease;
+}
+
+.tradition-card:hover {
+  background: rgba(214, 199, 167, 0.035);
+}
+
+.tradition-card:has(input:checked) {
+  color: var(--bone-bright);
+  background:
+    linear-gradient(rgba(112, 63, 57, 0.15), transparent 65%),
+    rgba(214, 199, 167, 0.04);
+  box-shadow: inset 0 0 0 1px var(--bone);
+}
+
+.tradition-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.tradition-card:has(input:focus-visible) {
+  outline: 2px solid var(--bone-bright);
+  outline-offset: 3px;
+}
+
+.tradition-card__index {
+  margin-bottom: auto;
+  color: var(--blood-bright);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+.tradition-card__name {
+  margin: 3rem 0 0.35rem;
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+}
+
+.tradition-card__epithet {
+  margin-bottom: 1.25rem;
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tradition-card__description {
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.tradition-card__stats {
+  margin-top: 1.5rem;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.form-actions,
+.ending__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+}

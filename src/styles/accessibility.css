@@ -1,0 +1,70 @@
+html {
+  text-size-adjust: 100%;
+}
+
+html[data-text-scale="large"] {
+  font-size: 125%;
+}
+
+html[data-text-scale="largest"] {
+  font-size: 150%;
+}
+
+.accessibility-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding: 0.35rem clamp(1rem, 3vw, 3rem);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-muted);
+  background: #090a09;
+}
+
+.text-scale-control,
+.music-control {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  color: inherit;
+  font-size: 0.75rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.music-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.music-control__glyph {
+  color: var(--bone);
+  font-size: 1rem;
+}
+
+.music-control__status {
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.music-control[data-music-state="on"] {
+  border-color: var(--line-strong);
+  color: var(--bone);
+}
+
+.text-scale-control__glyph {
+  color: var(--bone);
+  font-size: 1.15rem;
+}
+
+.story-copy p {
+  font-size: clamp(1.12rem, 1.7vw, 1.3rem);
+  line-height: 1.75;
+}
+
+html[data-text-scale="largest"] :is(.home, .story-shell, .battle-layout, .tactical-scene__body) {
+  grid-template-columns: minmax(0, 1fr);
+}

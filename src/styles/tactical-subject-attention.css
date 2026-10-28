@@ -1,0 +1,19 @@
+.tactical-subject-attention {
+  position: absolute;
+  z-index: 8;
+  top: -0.28rem;
+  right: -0.28rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 1px solid var(--bone-bright);
+  background: var(--spirit);
+  box-shadow:
+    0 0 0 2px var(--night),
+    0 0 0.75rem color-mix(in srgb, var(--spirit) 48%, transparent);
+  rotate: 45deg;
+  pointer-events: none;
+}
+
+[data-tactical-attention="new-courses"] {
+  border-color: color-mix(in srgb, var(--spirit) 78%, var(--bone-bright));
+}

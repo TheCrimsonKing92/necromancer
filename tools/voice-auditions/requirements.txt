@@ -1,0 +1,5 @@
+# Direct development-tool dependencies. The generator records the complete
+# resolved Python environment beside every audition cohort.
+kokoro==0.9.4
+soundfile==0.13.1
+espeakng-loader==0.2.4

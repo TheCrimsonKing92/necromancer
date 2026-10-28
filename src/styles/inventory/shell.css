@@ -1,0 +1,129 @@
+/* Inventory and anatomy */
+
+.item-visual {
+  display: block;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(214, 199, 167, 0.16);
+  background-color: #0b0d0c;
+  box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
+.item-visual--pack {
+  width: 7rem;
+  height: 7rem;
+}
+
+.item-visual--equipment {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.item-visual--shop {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+.inventory-page {
+  flex: 1;
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 5vw, 4.5rem);
+}
+
+.inventory-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.inventory-heading h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.inventory-heading p:last-child {
+  max-width: 48rem;
+  margin-bottom: 0;
+  color: var(--ink-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.inventory-heading .button {
+  flex: 0 0 auto;
+}
+
+.inventory-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 0 3.5rem;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.inventory-summary > div {
+  min-width: 0;
+  padding: 1rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.inventory-summary dt {
+  margin-bottom: 0.5rem;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.inventory-summary dd {
+  margin: 0;
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+
+.inventory-workbench {
+  display: grid;
+  grid-template-areas:
+    "equipment pack"
+    "anatomy anatomy"
+    "servant servant";
+  grid-template-columns: minmax(18rem, 0.85fr) minmax(24rem, 1.15fr);
+  gap: 3.5rem clamp(2rem, 4vw, 4rem);
+}
+
+.inventory-workbench--with-shop {
+  grid-template-areas:
+    "equipment pack"
+    "shop shop"
+    "anatomy anatomy"
+    "servant servant";
+}
+
+.inventory-section--equipment {
+  grid-area: equipment;
+}
+
+.inventory-section--pack {
+  grid-area: pack;
+}
+
+.inventory-section--anatomy {
+  grid-area: anatomy;
+}
+
+.inventory-section--shop {
+  grid-area: shop;
+}
+
+.inventory-section--servant {
+  grid-area: servant;
+}

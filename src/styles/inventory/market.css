@@ -1,0 +1,92 @@
+.shop-intro {
+  max-width: 44rem;
+  margin: 0.5rem 0 0;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.shop-stock {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.shop-item {
+  display: flex;
+  min-height: 12rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.25rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(145deg, rgba(156, 130, 182, 0.045), transparent 72%),
+    rgba(255, 255, 255, 0.01);
+}
+
+.shop-item > .item-visual {
+  align-self: stretch;
+}
+
+.shop-item > div {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.shop-item span,
+.shop-item small {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.shop-item h3 {
+  margin: 0;
+  color: var(--bone);
+  font-size: 1.2rem;
+}
+
+.shop-item p {
+  max-width: 36rem;
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.shop-item .shop-item__unavailable {
+  color: #d28a82;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+.shop-item .item-action {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.shop-item > .shop-item__actions {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 0.65rem;
+}
+
+.shop-item--service {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.item-action--barter {
+  color: #c4b1d7;
+}
+
+.item-action--sell {
+  color: #baabd0;
+}

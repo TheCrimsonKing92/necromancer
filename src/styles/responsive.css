@@ -1,0 +1,253 @@
+@media (max-width: 1050px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+
+  .home__hero {
+    min-height: 75vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .home__aside {
+    min-height: 38rem;
+  }
+
+  .game-layout,
+  .battle-page {
+    grid-template-columns: minmax(0, 1fr) 19rem;
+  }
+
+  .story-panel,
+  .battle-main {
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .dossier {
+    padding: 2rem 1.5rem;
+  }
+
+}
+
+@media (max-width: 800px) {
+  .tradition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tradition-card {
+    min-height: 18rem;
+  }
+
+  .game-layout,
+  .battle-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .story-panel,
+  .battle-main {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dossier {
+    position: static;
+    order: -1;
+    width: 100%;
+    min-height: auto;
+    align-self: stretch;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .battle-page .battle-main {
+    order: -1;
+  }
+
+  .battle-page .dossier {
+    order: 0;
+  }
+
+  .battle-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: -1rem 0 2rem;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    background: rgba(24, 26, 22, 0.82);
+  }
+
+  .battle-summary > div {
+    display: grid;
+    gap: 0.18rem;
+  }
+
+  .battle-summary span {
+    color: var(--ink-faint);
+    font-family: var(--sans);
+    font-size: 0.54rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .battle-summary strong {
+    color: var(--bone);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 400;
+  }
+
+  .battle-summary .status-list {
+    grid-column: 1 / -1;
+    margin: 0.1rem 0 0;
+  }
+
+  .dossier__title {
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-list > div:nth-child(odd) {
+    padding-right: 1rem;
+  }
+
+  .stat-list > div:nth-child(even) {
+    padding-left: 1rem;
+    border-left: 1px solid var(--line);
+  }
+
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    min-height: 4.5rem;
+    padding-inline: 1rem;
+  }
+
+  .brand__wordmark {
+    display: none;
+  }
+
+  .header-character {
+    display: grid;
+    gap: 0.15rem;
+    text-align: right;
+  }
+
+  .header-tools {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: flex-end;
+  }
+
+  .header-inventory {
+    font-size: 0.56rem;
+  }
+
+  .header-character {
+    display: none;
+  }
+
+  .home__hero {
+    min-height: calc(100vh - 3.5rem);
+    padding: 5rem 1.25rem;
+  }
+
+  .home h1 {
+    /* Keep the single-word title inside the hero's portrait-width content box. */
+    font-size: clamp(2.5rem, 15vw, 4.6rem);
+  }
+
+  .home__mark {
+    right: -10rem;
+    opacity: 0.6;
+  }
+
+  .home__actions,
+  .home__actions .button {
+    width: 100%;
+  }
+
+  .save-note {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .home__aside {
+    min-height: auto;
+    padding: 4rem 1.25rem;
+  }
+
+  .home__aside h2 {
+    margin-bottom: 2.5rem;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tradition-card {
+    min-height: 20rem;
+  }
+
+  .story-panel,
+  .battle-main {
+    padding: 3rem 1.1rem;
+  }
+
+  .story-panel h1 {
+    font-size: 2.85rem;
+  }
+
+  .choice {
+    grid-template-columns: 1.5rem 1fr;
+  }
+
+  .choice__arrow {
+    display: none;
+  }
+
+  .story-outcome {
+    padding-right: 3.5rem;
+  }
+
+  .battle-heading {
+    margin-bottom: 2.5rem;
+  }
+
+  .turn-seal {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .enemy-grid,
+  .action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .enemy-card {
+    min-height: 10.5rem;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

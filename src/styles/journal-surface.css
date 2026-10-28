@@ -1,0 +1,7 @@
+@import "./journal.css";
+
+@media (max-width: 800px) {
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+}

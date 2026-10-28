@@ -1,0 +1,171 @@
+.tactical-course {
+  display: grid;
+  gap: 0.55rem;
+  width: 100%;
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  color: var(--bone-bright);
+  text-align: left;
+  background: rgba(8, 9, 7, 0.45);
+  cursor: pointer;
+}
+
+.tactical-course:hover:not(:disabled),
+.tactical-course:focus-visible {
+  border-color: var(--spirit);
+  background: color-mix(in srgb, var(--spirit) 7%, rgba(8, 9, 7, 0.78));
+}
+
+.tactical-course:disabled {
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.tactical-course__title,
+.tactical-course__lead,
+.tactical-course__resolution,
+.tactical-course__terms,
+.tactical-course__stakes,
+.tactical-course__term,
+.tactical-course__datum {
+  display: block;
+  min-width: 0;
+}
+
+.tactical-course__title {
+  color: inherit;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.18;
+  text-decoration: none;
+}
+
+.tactical-course__lead {
+  color: var(--ink-muted);
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.tactical-course__resolution {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-top: 0.25rem;
+}
+
+.tactical-course__datum {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: baseline;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.tactical-course__datum small,
+.tactical-course__term small,
+.tactical-course__stakes small {
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.tactical-course__datum strong {
+  color: var(--bone-dim);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+.tactical-course__terms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+}
+
+.tactical-course__term {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.4rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.4rem 0.55rem;
+  border-inline-start: 2px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.tactical-course__term > strong {
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.tactical-course__term > span {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  line-height: 1.4;
+  text-align: start;
+}
+
+.tactical-course__term-detail {
+  flex-basis: 100%;
+  max-width: 30rem;
+  overflow-wrap: anywhere;
+}
+
+.tactical-course__term-availability {
+  white-space: nowrap;
+}
+
+.tactical-course__consequence {
+  display: grid;
+  flex-basis: 100%;
+  gap: 0.25rem;
+  justify-items: start;
+  min-width: 0;
+}
+
+.tactical-course__consequence > .tactical-course__term-detail {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  line-height: 1.45;
+}
+
+.tactical-course__term--cost { border-inline-start-color: var(--bone-dim); }
+.tactical-course__term--obligation { border-inline-start-color: var(--spirit); }
+.tactical-course__term--time,
+.tactical-course__term--exposure { border-inline-start-color: var(--blood); }
+.tactical-course__term--world-state { border-inline-start-color: var(--moss); }
+
+.tactical-course__stakes {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.tactical-course__stakes > strong {
+  color: var(--bone-dim);
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  font-weight: 500;
+  line-height: 1.4;
+}

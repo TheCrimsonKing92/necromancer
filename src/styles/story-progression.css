@@ -1,0 +1,326 @@
+/* Story and dossier */
+
+.game-layout,
+.battle-page,
+.ending {
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 23rem);
+  width: min(100%, 1440px);
+  margin: 0 auto;
+}
+
+.story-panel {
+  padding: clamp(3rem, 7vw, 7rem) clamp(1.25rem, 7vw, 7rem);
+  border-right: 1px solid var(--line);
+}
+
+.story-copy {
+  max-width: 48rem;
+  margin: 2.5rem 0 3.5rem;
+}
+
+.story-copy p {
+  color: #c6bcaa;
+  font-size: clamp(1.05rem, 1.6vw, 1.23rem);
+  line-height: 1.85;
+}
+
+.story-copy p:first-child::first-letter {
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  color: var(--bone);
+  font-size: 3.7em;
+  line-height: 0.8;
+}
+
+.story-outcome {
+  position: relative;
+  max-width: 52rem;
+  margin: -0.75rem 0 3rem;
+  padding: 1.5rem 4rem 1.65rem 1.75rem;
+  border: 1px solid rgba(156, 130, 182, 0.32);
+  border-left: 3px solid #9c82b6;
+  background:
+    linear-gradient(105deg, rgba(156, 130, 182, 0.11), transparent 68%),
+    rgba(214, 199, 167, 0.025);
+}
+
+.result-card--entering {
+  animation: result-card-enter 180ms ease-out both;
+}
+
+@keyframes result-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.45rem);
+  }
+}
+
+.result-card__dismiss {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  line-height: 1;
+  background: rgba(8, 10, 8, 0.45);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.result-card__dismiss:hover,
+.result-card__dismiss:focus-visible {
+  border-color: var(--bone);
+  color: var(--bone-bright);
+  background: rgba(214, 199, 167, 0.08);
+}
+
+.story-outcome .eyebrow {
+  margin-bottom: 0.65rem;
+  color: #b9a0cf;
+}
+
+.story-outcome h2 {
+  margin-bottom: 0.65rem;
+  color: var(--bone-bright);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.story-outcome__body {
+  max-width: 43rem;
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.story-outcome__result {
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(156, 130, 182, 0.2);
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.045em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.story-outcome__rewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outcome-reward {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.55rem;
+  border: 1px solid rgba(214, 199, 167, 0.24);
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  min-height: 2.75rem;
+  background: rgba(8, 10, 8, 0.35);
+  cursor: pointer;
+}
+
+.outcome-reward:hover,
+.outcome-reward:focus-visible {
+  border-color: #b9a0cf;
+  color: var(--bone-bright);
+  outline: none;
+}
+
+.outcome-reward__mark {
+  display: grid;
+  width: 1rem;
+  height: 1rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: #b9a0cf;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+}
+
+.knowledge-popover {
+  width: min(26rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+  border: 1px solid rgba(185, 160, 207, 0.55);
+  color: var(--ink);
+  background: #11130f;
+  box-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(0.35rem);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    display 140ms allow-discrete,
+    overlay 140ms allow-discrete;
+}
+
+.knowledge-popover:popover-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@starting-style {
+  .knowledge-popover:popover-open {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+}
+
+.knowledge-popover::backdrop {
+  background: rgba(0, 0, 0, 0.48);
+}
+
+.knowledge-popover .eyebrow {
+  margin-bottom: 0.55rem;
+  color: #b9a0cf;
+}
+
+.knowledge-popover > strong {
+  display: block;
+  color: var(--bone-bright);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.knowledge-popover > p:not(.eyebrow) {
+  margin: 0.7rem 0 1rem;
+  color: var(--ink-muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.choice__unavailable,
+.combat-action__unavailable {
+  color: #d28a82;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.45;
+}
+
+.choice-list {
+  display: grid;
+  max-width: 52rem;
+  border-top: 1px solid var(--line);
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.35rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.choice:hover:not(:disabled) {
+  background: rgba(214, 199, 167, 0.035);
+}
+
+.choice:disabled {
+  opacity: 0.42;
+}
+
+.choice--completed:disabled {
+  opacity: 0.7;
+}
+
+.choice__index {
+  color: var(--blood-bright);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.choice__body {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.choice__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.05rem;
+}
+
+.choice__tag {
+  width: fit-content;
+  padding: 0.18rem 0.38rem;
+  border: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.choice__tag--tradition {
+  border-color: rgba(156, 130, 182, 0.45);
+  color: #b9a0cf;
+  background: rgba(156, 130, 182, 0.08);
+}
+
+.choice__tag--complete {
+  border-color: rgba(118, 134, 106, 0.45);
+  color: #9cab90;
+  background: rgba(118, 134, 106, 0.08);
+}
+
+.choice__tag--caution {
+  border-color: rgba(195, 125, 99, 0.42);
+  color: #cf9480;
+  background: rgba(195, 125, 99, 0.07);
+}
+
+.choice__body strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+.choice__detail {
+  color: var(--ink-faint);
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+.choice__arrow {
+  color: var(--bone);
+  font-size: 1.25rem;
+  transition: transform 180ms ease;
+}
+
+.choice:hover:not(:disabled) .choice__arrow {
+  transform: translateX(0.35rem);
+}

@@ -1,0 +1,70 @@
+@import "./inventory.css";
+
+@media (max-width: 1050px) {
+  .inventory-summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .inventory-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .inventory-workbench {
+    grid-template-areas:
+      "equipment"
+      "pack"
+      "anatomy";
+    grid-template-columns: 1fr;
+  }
+
+  .inventory-workbench--with-shop {
+    grid-template-areas:
+      "equipment"
+      "pack"
+      "shop"
+      "anatomy";
+  }
+}
+
+@media (max-width: 560px) {
+  .inventory-page {
+    padding: 3rem 1.1rem;
+  }
+
+  .inventory-heading h1 {
+    font-size: 2.85rem;
+  }
+
+  .inventory-heading .button {
+    width: 100%;
+  }
+
+  .inventory-summary {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 2.75rem;
+  }
+
+  .inventory-workbench {
+    gap: 2.75rem;
+  }
+
+  .equipment-grid,
+  .body-map,
+  .shop-stock {
+    grid-template-columns: 1fr;
+  }
+
+  .body-part--head,
+  .body-part--torso,
+  .body-part--leftArm,
+  .body-part--rightArm,
+  .body-part--leftLeg,
+  .body-part--rightLeg {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}

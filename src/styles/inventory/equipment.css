@@ -1,0 +1,100 @@
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.equipment-slot {
+  display: flex;
+  min-height: 9.5rem;
+  flex-direction: column;
+  padding: 1rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.equipment-slot.is-filled {
+  background:
+    linear-gradient(145deg, rgba(214, 199, 167, 0.055), transparent 70%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.equipment-slot.is-singular {
+  box-shadow: inset 2px 0 var(--line-strong);
+  background:
+    linear-gradient(145deg, rgba(214, 199, 167, 0.09), transparent 65%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.equipment-slot__label {
+  margin-bottom: 1.15rem;
+  color: var(--blood-bright);
+  font-family: var(--sans);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.equipment-slot__body {
+  display: grid;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.equipment-slot__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.equipment-slot__content .equipment-slot__body {
+  margin-bottom: 0;
+}
+
+.equipment-slot__body strong {
+  font-size: 0.98rem;
+  font-weight: 400;
+}
+
+.equipment-slot__body span,
+.equipment-slot__empty {
+  color: var(--ink-faint);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.equipment-slot__empty {
+  margin: auto 0;
+  font-style: italic;
+}
+
+.item-action {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.32rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+}
+
+.item-action:hover:not(:disabled) {
+  border-color: var(--bone-bright);
+  color: var(--bone-bright);
+}
+
+.item-action:disabled {
+  color: var(--ink-faint);
+  opacity: 0.45;
+}

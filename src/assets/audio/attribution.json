@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "runtimePath": "src/assets/audio/ominous3-calm-loop.ogg",
+      "creator": "PeriTune / Sei Mutsuki",
+      "title": "Ominous3_Calm",
+      "sourcePage": "https://peritune.com/blog/2018/06/06/ominous3/",
+      "sourceArchive": "https://peritune.com/loop/PerituneMaterial_Ominous3_Calm_loop.zip",
+      "license": "Creative Commons Attribution 4.0 International",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseEvidence": "The official track page, published 2018-06-06, links the loop archive and applies CC BY 4.0. PeriTune's 2026 terms retain CC BY 4.0 for tracks published before March 2026.",
+      "modifications": "None. The OGG loop was copied unchanged from the official loop archive.",
+      "loopNotes": "Official seamless loop file; runtime advances to the next cue when playback ends.",
+      "retrievedOn": "2026-08-13",
+      "sha256": "fa1ffbf22261198d5da33c4f70a00d9e9e63eeb2f381c936549545e590e1f4ff",
+      "bytes": 2577581
+    },
+    {
+      "runtimePath": "src/assets/audio/atmosphere-dark-loop.ogg",
+      "creator": "PeriTune / Sei Mutsuki",
+      "title": "Atmosphere_Dark",
+      "sourcePage": "https://peritune.com/blog/2016/07/18/atmosphere_dark/",
+      "sourceArchive": "https://peritune.com/loop/PerituneMaterial_Atmosphere_Dark_loop.zip",
+      "license": "Creative Commons Attribution 4.0 International",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseEvidence": "The official track page, published 2016-07-18, links the loop archive and applies CC BY 4.0. PeriTune's 2026 terms retain CC BY 4.0 for tracks published before March 2026.",
+      "modifications": "None. The OGG loop was copied unchanged from the official loop archive.",
+      "loopNotes": "Official seamless loop file; runtime advances to the next cue when playback ends.",
+      "retrievedOn": "2026-08-13",
+      "sha256": "3bd176f170f63a79b671f234885158debbf5a38939fcadbf12c04c62456deb9e",
+      "bytes": 3655462
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+.breach-yard { --stage-accent: #c6a7dd; --stage-danger: #ea725e; }
+.breach-yard__map {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+.breach-yard__frame .action-stage__backdrop { object-position: 50% 50%; }
+
+/* The painting owns the terrain. Semantic locations remain invisible until a
+   reachable destination is explored; the map does not wear a permanent board
+   game grid over its masonry. */
+.breach-yard__frame .action-stage__ground { opacity: 0; }
+.breach-yard .action-stage__intent { pointer-events: none; }
+
+.breach-yard .action-stage__figure--subject {
+  z-index: 11;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.breach-yard .action-stage__figure--subject:hover,
+.breach-yard .action-stage__figure--subject:focus-visible,
+.breach-yard .action-stage__figure--subject.is-selected,
+.breach-yard__site-subject:hover,
+.breach-yard__site-subject:focus-visible,
+.breach-yard__site-subject.is-selected {
+  outline: 1px solid rgb(215 187 233 / 78%);
+  outline-offset: .25rem;
+  filter: drop-shadow(0 .45rem .5rem rgb(194 145 224 / 38%));
+}
+
+.breach-yard__site-subject {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 7rem;
+  height: 4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--bone-bright);
+  transform: translate(-50%, -50%);
+}
+
+.breach-yard__site-subject span {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: max-content;
+  max-width: 9rem;
+  padding: .2rem .35rem;
+  border: 1px solid rgb(218 205 165 / 34%);
+  background: rgb(5 7 6 / 92%);
+  font: .58rem/1.2 var(--mono);
+  letter-spacing: .05em;
+  opacity: 0;
+  text-transform: uppercase;
+  transform: translate(-50%, .2rem);
+}
+
+.breach-yard__site-subject:hover span,
+.breach-yard__site-subject:focus-visible span,
+.breach-yard__site-subject.is-selected span { opacity: 1; transform: translate(-50%, 0); }
+
+.breach-yard__subject-panel {
+  position: absolute;
+  z-index: 23;
+  left: 1rem;
+  bottom: 5.4rem;
+  width: min(29rem, calc(100% - 2rem));
+  max-height: min(29rem, calc(100% - 11rem));
+  overflow-y: auto;
+  padding: .9rem 1rem;
+  border: 1px solid rgb(218 205 165 / 44%);
+  border-inline-start: 3px solid var(--stage-accent);
+  background: rgb(7 10 8 / 97%);
+  box-shadow: 0 .8rem 2rem rgb(0 0 0 / 52%);
+}
+
+.breach-yard__subject-panel[hidden] { display: none; }
+.breach-yard__subject-panel .eyebrow { margin: 0 2rem .2rem 0; }
+.breach-yard__subject-panel h2 { margin: 0 2rem .35rem 0; font: 1.45rem/1.05 var(--serif); }
+.breach-yard__subject-panel > p:last-of-type { margin: 0; color: var(--ink-soft); font-size: .88rem; line-height: 1.4; }
+
+.breach-yard__subject-close {
+  position: absolute;
+  top: .55rem;
+  right: .55rem;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgb(218 205 165 / 28%);
+  background: #0a0d0b;
+  color: var(--bone);
+  font-size: 1.2rem;
+}
+
+.breach-yard__context-actions { display: grid; gap: .45rem; margin-top: .75rem; }
+.breach-yard__context-action {
+  display: grid;
+  grid-template-columns: 1.7rem 1fr;
+  gap: .25rem .55rem;
+  align-items: start;
+  padding: .65rem;
+  border: 1px solid rgb(218 205 165 / 27%);
+  background: rgb(18 21 17 / 88%);
+  color: var(--bone);
+  text-align: left;
+}
+.breach-yard__context-action:hover,
+.breach-yard__context-action:focus-visible { border-color: var(--bone-bright); background: rgb(35 34 25 / 94%); }
+.breach-yard__context-glyph { grid-row: 1 / 4; color: var(--stage-accent); font: 1.2rem var(--serif); text-align: center; }
+.breach-yard__context-action strong { display: block; color: var(--bone-bright); font: 1.05rem/1.1 var(--serif); }
+.breach-yard__context-action small { display: block; margin-top: .18rem; color: var(--ink-soft); font: .78rem/1.3 var(--serif); }
+.breach-yard__action-facts { display: flex; flex-wrap: wrap; gap: .3rem; grid-column: 2; }
+.breach-yard__action-facts > span,
+.breach-yard__known-risk {
+  padding: .24rem .35rem;
+  border: 1px solid rgb(218 205 165 / 26%);
+  color: var(--bone);
+  font: .62rem/1.25 var(--mono);
+}
+.breach-yard__action-facts b,
+.breach-yard__known-risk b { margin-right: .35rem; color: var(--stage-accent); font-weight: 400; text-transform: uppercase; }
+.breach-yard__known-risk { grid-column: 2; border-color: rgb(232 117 98 / 42%); color: #e7a092; }
+
+.breach-yard__abilities {
+  position: absolute;
+  z-index: 22;
+  left: 50%;
+  bottom: .75rem;
+  display: flex;
+  gap: .4rem;
+  padding: .4rem;
+  border: 1px solid rgb(218 205 165 / 28%);
+  background: rgb(5 7 6 / 92%);
+  transform: translateX(-50%);
+}
+.breach-yard__ability {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25rem auto;
+  gap: .35rem;
+  align-items: center;
+  min-height: 2.7rem;
+  padding: .4rem .6rem;
+  border: 1px solid rgb(218 205 165 / 28%);
+  background: rgb(15 18 15 / 92%);
+  color: var(--bone);
+}
+.breach-yard__ability > span:first-child { color: var(--stage-accent); font: 1.05rem var(--serif); }
+.breach-yard__ability strong { white-space: nowrap; font: .75rem var(--mono); letter-spacing: .03em; text-transform: uppercase; }
+.breach-yard__ability:hover,
+.breach-yard__ability:focus-visible,
+.breach-yard__ability.is-selected { border-color: var(--bone-bright); background: rgb(35 34 25 / 96%); }
+.breach-yard__ability:disabled { opacity: .42; cursor: not-allowed; }
+.breach-yard__ability-detail {
+  position: absolute;
+  z-index: 30;
+  left: 50%;
+  bottom: calc(100% + .45rem);
+  display: none;
+  width: max-content;
+  max-width: 18rem;
+  padding: .45rem .55rem;
+  border: 1px solid rgb(218 205 165 / 40%);
+  background: rgb(5 7 6 / 97%);
+  color: var(--ink-soft);
+  font: .72rem/1.35 var(--serif);
+  transform: translateX(-50%);
+}
+.breach-yard__ability-detail small { display: block; margin-top: .25rem; color: var(--stage-accent); font: .58rem var(--mono); text-transform: uppercase; }
+.breach-yard__ability:hover .breach-yard__ability-detail,
+.breach-yard__ability:focus-visible .breach-yard__ability-detail { display: block; }
+
+.breach-yard .action-stage__latest,
+.breach-yard .action-stage__targeting { bottom: 5.6rem; }
+
+@media (max-width: 54rem) {
+  .breach-yard__frame .action-stage__backdrop { object-position: 50% 50%; }
+  .breach-yard__frame .action-stage__position { transform: scale(.88); }
+}
+
+@media (max-width: 36rem) {
+  .breach-yard .breach-yard__frame {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .breach-yard__frame .action-stage__hud {
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    padding: .8rem;
+    background: #070a08;
+  }
+  .breach-yard__frame .action-stage__stakes {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: .15rem;
+  }
+  .breach-yard__frame .action-stage__stake { flex: 0 0 auto; white-space: nowrap; }
+  .breach-yard__map {
+    position: relative;
+    inset: auto;
+    width: auto;
+    min-width: 0;
+    aspect-ratio: 9 / 16;
+  }
+  .breach-yard__frame .action-stage__position {
+    left: var(--stage-mobile-x);
+    top: var(--stage-mobile-y);
+    transform: scale(.72);
+  }
+  .breach-yard__frame .action-stage__latest {
+    top: .75rem;
+    right: .5rem;
+    bottom: auto;
+    max-width: calc(100% - 1rem);
+  }
+  .breach-yard__frame .action-stage__commands {
+    position: relative;
+    inset: auto;
+    width: auto;
+    min-width: 0;
+    max-width: calc(100% - .7rem);
+    margin: .35rem;
+  }
+  .breach-yard__subject-panel { left: .5rem; bottom: 4.8rem; width: calc(100% - 1rem); max-height: 18rem; }
+  .breach-yard__abilities { right: .4rem; bottom: .4rem; left: .4rem; justify-content: center; transform: none; }
+  .breach-yard__ability { min-width: 0; padding: .35rem .45rem; }
+  .breach-yard__ability strong { font-size: .63rem; }
+  .breach-yard__ability-detail { right: 0; left: auto; max-width: min(15rem, 85vw); transform: none; }
+  .breach-yard .action-stage__latest { top: .75rem; bottom: auto; }
+  .breach-yard .action-stage__targeting { bottom: 4.9rem; }
+}

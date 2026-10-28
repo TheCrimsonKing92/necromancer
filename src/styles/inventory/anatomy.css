@@ -1,0 +1,229 @@
+.body-map {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.body-part {
+  min-width: 0;
+  min-height: 10rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.body-part--head {
+  grid-column: 2 / span 2;
+}
+
+.body-part--torso {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+}
+
+.body-part--leftArm {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.body-part--rightArm {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.body-part--leftLeg {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.body-part--rightLeg {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.body-part.is-wounded {
+  border-color: rgba(207, 93, 85, 0.35);
+  background:
+    linear-gradient(145deg, rgba(163, 67, 63, 0.1), transparent 65%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.body-part.is-scarred:not(.is-wounded) {
+  border-color: rgba(214, 199, 167, 0.27);
+  background:
+    linear-gradient(145deg, rgba(214, 199, 167, 0.045), transparent 65%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.body-part.is-critical {
+  box-shadow: inset 0 0 0 1px rgba(207, 93, 85, 0.55);
+}
+
+.body-part__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.body-part__heading span {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.body-part__heading h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.body-part__heading > strong {
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+}
+
+.body-part__condition {
+  height: 0.2rem;
+  margin: 0.8rem 0 0.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.body-part__condition span {
+  display: block;
+  height: 100%;
+  background: var(--moss);
+}
+
+.body-part.is-wounded .body-part__condition span {
+  background: var(--blood-bright);
+}
+
+.body-part__armor,
+.body-part__sound {
+  margin: 0;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+}
+
+.body-part__sound {
+  margin-top: 1.4rem;
+  font-family: var(--serif);
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.wound-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wound {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(207, 93, 85, 0.25);
+}
+
+.wound > div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.wound strong {
+  color: #d8aba5;
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+.wound span {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+}
+
+.wound .wound__effects {
+  display: block;
+  max-width: 16rem;
+  margin-top: 0.18rem;
+  color: #c6bcaa;
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  letter-spacing: 0;
+  line-height: 1.45;
+  text-transform: none;
+}
+
+.wound.is-treated strong {
+  color: var(--ink-muted);
+}
+
+.wound__treated {
+  color: var(--moss) !important;
+}
+
+.wound__terminal {
+  color: var(--ink-faint) !important;
+}
+
+.wound__action {
+  display: grid;
+  max-width: 11rem;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.wound__action .item-action {
+  justify-self: end;
+}
+
+.wound__action small {
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.56rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: none;
+}
+
+.scar-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scar {
+  display: grid;
+  gap: 0.18rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(214, 199, 167, 0.2);
+}
+
+.scar strong {
+  color: var(--bone);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.scar span {
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+}

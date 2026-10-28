@@ -1,0 +1,64 @@
+.development-tactical-shell {
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  padding: clamp(0.35rem, 0.8vw, 1rem);
+}
+
+.development-tactical-shell__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  max-width: 100rem;
+  margin: 0 auto 1rem;
+  border: 1px solid var(--line);
+  padding: 0.75rem;
+}
+
+.development-tactical-shell__nav strong {
+  color: var(--bone-bright);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+
+.development-tactical-shell__nav span {
+  margin-inline-end: auto;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.development-tactical-shell__nav button {
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--bone);
+  padding: 0.6rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.development-tactical-shell__nav button:hover,
+.development-tactical-shell__nav button:focus-visible {
+  border-color: var(--bone);
+  color: var(--bone-bright);
+}
+
+.development-tactical-shell [data-development-tactical-host] {
+  max-width: none;
+  margin-inline: auto;
+}
+
+@media (max-width: 48rem) {
+  .development-tactical-shell__nav {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .development-tactical-shell__nav span {
+    margin: 0;
+  }
+}

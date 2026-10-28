@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<WindowsPerformanceRecorder
+    Author="Necromancer contributors"
+    Comments="Narrow DxgKrnl allocation-lifecycle capture for browser GPU memory analysis"
+    Company="Necromancer"
+    Team="Performance"
+    Version="1.0">
+  <Profiles>
+    <EventCollector
+        Id="NecromancerGpuMemoryCollector"
+        Name="Necromancer GPU memory collector">
+      <BufferSize Value="128"/>
+      <Buffers Value="64"/>
+    </EventCollector>
+
+    <!--
+      DxgKrnl keyword 0x40 owns AdapterAllocation Start/Stop/DC_Start.
+      No stacks or scheduler/system providers are collected: this profile measures
+      allocation lifetimes rather than GPU execution or CPU scheduling.
+    -->
+    <EventProvider
+        Id="DxgKrnlAllocationLifecycle"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true">
+      <Keywords>
+        <Keyword Value="0x40"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--
+      DxgKrnl keyword 0x1 includes ReportSegment metadata. Capture it only as
+      provider state at the beginning; enabling it continuously would also record
+      unrelated high-frequency graphics events.
+    -->
+    <EventProvider
+        Id="DxgKrnlSegmentSnapshot"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        CaptureStateOnly="true">
+      <CaptureStateOnStart>
+        <Keyword Value="0x1"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+
+    <Profile
+        Description="Narrow DxgKrnl GPU allocation and segment capture"
+        DetailLevel="Verbose"
+        Id="NecromancerGpuMemory.Verbose.File"
+        LoggingMode="File"
+        Name="NecromancerGpuMemory">
+      <Collectors>
+        <EventCollectorId Value="NecromancerGpuMemoryCollector">
+          <EventProviders>
+            <EventProviderId Value="DxgKrnlAllocationLifecycle"/>
+            <EventProviderId Value="DxgKrnlSegmentSnapshot"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+
+    <Profile
+        Base="NecromancerGpuMemory.Verbose.File"
+        Description="Narrow DxgKrnl GPU allocation and segment capture"
+        DetailLevel="Verbose"
+        Id="NecromancerGpuMemory.Verbose.Memory"
+        LoggingMode="Memory"
+        Name="NecromancerGpuMemory"/>
+  </Profiles>
+</WindowsPerformanceRecorder>
