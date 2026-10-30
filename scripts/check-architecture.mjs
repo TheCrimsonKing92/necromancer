@@ -16,7 +16,7 @@ const FILE_BUDGETS = new Map([
   ["src/game/enemy-actions.ts", 100],
   ["src/game/content.ts", 100],
   ["src/game/persistence.ts", 200],
-  ["src/game/types.ts", 900],
+  ["src/game/types.ts", 133],
   ["src/ui/inventory-render.ts", 150],
   ["src/styles.css", 50],
   ["src/ui/app.ts", 647],
