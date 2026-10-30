@@ -10,7 +10,7 @@ const DEFAULT_STYLESHEET_BUDGET = 800;
 // These are shrinking ceilings for known aggregation points, not targets.
 // Lower a ceiling after an extraction; do not raise one to land a feature.
 const FILE_BUDGETS = new Map([
-  ["src/game/engine.ts", 848],
+  ["src/game/engine.ts", 297],
   ["src/ui/render.ts", 100],
   ["src/game/anatomy.ts", 100],
   ["src/game/enemy-actions.ts", 100],
