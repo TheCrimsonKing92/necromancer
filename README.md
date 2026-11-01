@@ -235,6 +235,10 @@ npm run perf:trace -- --url=http://127.0.0.1:4173
 npm run perf:trace:gpu -- --url=http://127.0.0.1:4173
 ```
 
+## Contributing
+
+Changes reach `main` only through pull requests, as required by the repository's branch rules. Each change must keep `npm test` and `npm run build` passing.
+
 ## Architecture
 
 There are no runtime dependencies and no component framework.
