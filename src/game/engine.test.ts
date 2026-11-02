@@ -533,7 +533,10 @@ describe("battle engine", () => {
     const result = resolveBattleAction(state, "guard").state;
 
     expect(result.run?.player.spirit).toBe(0);
-    expect(result.run?.player.hp).toBe(27);
+    // Knife thrust: 0 base + 4 attack + 0 variance - 0 defense;
+    // armor absorbs 1 before the 3 Ward intercepts the remaining damage.
+    expect(result.run?.player.hp).toBe(28);
+    expect(result.run?.player.ward).toBe(0);
     expect(
       result.run?.battle?.log.some((entry) =>
         entry.text.includes("raises 3 Ward"),
@@ -545,7 +548,10 @@ describe("battle engine", () => {
       type: "damage",
       action: "knife thrust",
       wardAbsorbed: 3,
-      damage: 1,
+      armorAbsorbed: 1,
+      resistanceAbsorbed: 0,
+      protectionLabel: "Armor",
+      damage: 0,
     }));
 
     const alreadyBraced = createBattleState("medium");
@@ -1275,11 +1281,25 @@ describe("inventory, equipment, and wounds", () => {
       ),
     );
 
+    // Raking bite: 1 base + 3 attack + 0 variance - 0 defense;
+    // armor absorbs 1, leaving 3 for Ward and preserving 9 of its 12 points.
     expect(bite?.text).toContain(
-      "Ward turns the blow aside completely",
+      "3 Ward absorbs part of the blow. Armor turns 1 damage. Nothing reaches their torso.",
+    );
+    expect(bite?.event?.segments).toContainEqual(
+      expect.objectContaining({
+        type: "damage",
+        action: "raking bite",
+        damage: 0,
+        wardAbsorbed: 3,
+        armorAbsorbed: 1,
+        resistanceAbsorbed: 0,
+        protectionLabel: "Armor",
+      }),
     );
     expect(bite?.text).not.toContain("0 damage");
     expect(result.run?.player.hp).toBe(hpBefore);
+    expect(result.run?.player.ward).toBe(9);
     expect(result.run?.player.statuses).not.toContainEqual(
       expect.objectContaining({ id: "bleeding" }),
     );

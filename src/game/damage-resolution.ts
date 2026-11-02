@@ -77,15 +77,13 @@ export const applyIncomingDamage = (
   injuryProfile: InjuryProfileId =
     damageType === "occult" ? "spectral" : "impact",
 ): AppliedDamage => {
-  const wardAbsorbed = Math.min(target.ward, incoming);
-  const afterWard = incoming - wardAbsorbed;
   const resistanceAbsorbed =
     damageType === "physical" &&
     target.materiality === "incorporeal" &&
-    afterWard > 0
-      ? Math.ceil(afterWard / 2)
+    incoming > 0
+      ? Math.ceil(incoming / 2)
       : 0;
-  const afterResistance = afterWard - resistanceAbsorbed;
+  const afterResistance = incoming - resistanceAbsorbed;
   const naturalArmor =
     damageType === "physical"
       ? (target.naturalArmor[location] ?? 0)
@@ -99,7 +97,9 @@ export const applyIncomingDamage = (
     afterResistance > 0
       ? Math.min(armor, Math.max(0, afterResistance - 1))
       : 0;
-  const damage = afterResistance - armorAbsorbed;
+  const afterArmor = afterResistance - armorAbsorbed;
+  const wardAbsorbed = Math.min(target.ward, afterArmor);
+  const damage = afterArmor - wardAbsorbed;
   const protectionLabel =
     armorAbsorbed <= 0
       ? undefined
