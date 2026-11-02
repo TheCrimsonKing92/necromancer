@@ -189,7 +189,7 @@ const continueThroughRoadInterlude = (
 describe("game setup and narrative", () => {
   it("starts at the title and opens a clean creation flow", () => {
     expect(createInitialState()).toMatchObject({
-      schemaVersion: 4,
+      schemaVersion: 5,
       screen: "home",
       run: null,
       inventoryReturnScreen: null,
@@ -511,14 +511,14 @@ describe("battle engine", () => {
       "road-reeve",
     ).state;
     expect(second.run?.player.spirit).toBe(2);
-    expect(second.run?.player.body.torso.wounds).toHaveLength(1);
+    expect(second.run?.player.body.torso.wounds).toHaveLength(2);
     const third = resolveBattleAction(
       second,
       "borrowed-might",
       "road-reeve",
     ).state;
     expect(third.run?.player.spirit).toBe(0);
-    expect(third.run?.player.body.torso.wounds).toHaveLength(1);
+    expect(third.run?.player.body.torso.wounds).toHaveLength(2);
     expect(
       getActionUnavailableReason(third, "borrowed-might"),
     ).toContain("Requires 2 Spirit");
@@ -533,26 +533,20 @@ describe("battle engine", () => {
     const result = resolveBattleAction(state, "guard").state;
 
     expect(result.run?.player.spirit).toBe(0);
-    expect(result.run?.player.hp).toBe(28);
+    expect(result.run?.player.hp).toBe(27);
     expect(
       result.run?.battle?.log.some((entry) =>
         entry.text.includes("raises 3 Ward"),
       ),
     ).toBe(true);
     expect(
-      result.run?.battle?.log.flatMap((entry) =>
-        entry.event?.segments ?? [],
-      ),
+      result.run?.battle?.log.flatMap((entry) => entry.event?.segments ?? []),
     ).toContainEqual(expect.objectContaining({
       type: "damage",
-      target: result.run?.player.name,
-      damage: 0,
-      wardAbsorbed: 1,
-      armorAbsorbed: 1,
-      resistanceAbsorbed: 0,
-      protectionLabel: "Armor",
+      action: "knife thrust",
+      wardAbsorbed: 3,
+      damage: 1,
     }));
-    expect(result.run?.player.ward).toBe(2);
 
     const alreadyBraced = createBattleState("medium");
     alreadyBraced.run!.player.ward = 3;
@@ -1253,7 +1247,7 @@ describe("inventory, equipment, and wounds", () => {
     );
 
     expect(effectiveAttack(player)).toBe(attackBefore - 1);
-    expect(effectiveDefense(player)).toBe(defenseBefore - 2);
+    expect(effectiveDefense(player)).toBe(Math.max(0, defenseBefore - 2));
     expect(getFleeChance(player)).toBe(30);
   });
 

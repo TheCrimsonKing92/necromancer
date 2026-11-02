@@ -4,7 +4,7 @@ export const SAVE_KEY = "necromancer:save:v4";
 export const PREVIOUS_SAVE_KEY = "necromancer:save:v3";
 export const V2_SAVE_KEY = "necromancer:save:v2";
 export const LEGACY_SAVE_KEY = "necromancer:save:v1";
-export const SAVE_SCHEMA_VERSION = 4;
+export const SAVE_SCHEMA_VERSION = 5;
 
 export const RESUMABLE_SCREENS = new Set<ScreenId>([
   "story",
@@ -27,7 +27,7 @@ export interface StorageLike {
 }
 
 export interface SaveEnvelope {
-  schemaVersion: 4;
+  schemaVersion: 5;
   savedAt: string;
   state: GameState;
 }

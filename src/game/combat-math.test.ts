@@ -196,17 +196,24 @@ describe("combat math player contributions", () => {
     expect(effectiveAttack(player)).toBe(7);
   });
 
-  it("adds equipment defense bonuses to dexterity rather than the defense field", () => {
+  it("uses a player's defense bonuses plus equipment, never attributes", () => {
     const player = createPlayer("Mara", "medium", "female");
-    player.defense = 99;
     player.equipment = createEmptyEquipment();
-    expect(effectiveDefense(player)).toBe(2);
+    expect(effectiveDefense(player)).toBe(0);
 
-    player.equipment.charm = "saint-bone-charm";
+    player.defense = 3;
     expect(effectiveDefense(player)).toBe(3);
 
-    player.attributes.dexterity = 4;
-    expect(effectiveDefense(player)).toBe(5);
+    player.equipment.charm = "saint-bone-charm";
+    expect(effectiveDefense(player)).toBe(4);
+
+    player.attributes.dexterity = 6;
+    expect(effectiveDefense(player)).toBe(4);
+    player.attributes.vitality = 6;
+    expect(effectiveDefense(player)).toBe(4);
+
+    player.statuses.push({ id: "exposed", potency: 2, turns: 2 });
+    expect(effectiveDefense(player)).toBe(2);
   });
 
   it("combines Willpower, the tradition attribute and equipment for occult power", () => {
@@ -228,14 +235,14 @@ describe("combat math player contributions", () => {
     player.equipment.charm = "saint-bone-charm";
     expect(effectiveAttack(player)).toBe(4);
     expect(effectiveOccultPower(player)).toBe(4);
-    expect(effectiveDefense(player)).toBe(3);
+    expect(effectiveDefense(player)).toBe(1);
 
     wound(player, "leftArm");
     wound(player, "leftLeg");
 
     expect(effectiveAttack(player)).toBe(2);
     expect(effectiveOccultPower(player)).toBe(2);
-    expect(effectiveDefense(player)).toBe(1);
+    expect(effectiveDefense(player)).toBe(0);
   });
 
   it("uses dexterity for physical accuracy and evasion without equipment bonuses", () => {

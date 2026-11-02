@@ -62,7 +62,7 @@ export interface RunState {
 }
 
 export interface GameState {
-  schemaVersion: 4;
+  schemaVersion: 5;
   campaign: CampaignContinuityState | null;
   screen: ScreenId;
   storyId: ActiveStoryId | null;

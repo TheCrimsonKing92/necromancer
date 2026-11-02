@@ -96,7 +96,7 @@ describe("versioned local persistence", () => {
 
     expect(saved).toBe(true);
     expect(loadGame(storage)).toEqual({
-      schemaVersion: 4,
+      schemaVersion: 5,
       savedAt: "2026-07-24T12:00:00.000Z",
       state,
     });
@@ -213,7 +213,7 @@ describe("versioned local persistence", () => {
 
     const loaded = loadGame(storage);
 
-    expect(loaded?.schemaVersion).toBe(4);
+    expect(loaded?.schemaVersion).toBe(5);
     expect(loaded?.state.run?.world).toMatchObject({
       pressures: {
         escapedNames: 0,
@@ -567,10 +567,10 @@ describe("versioned local persistence", () => {
     const migrated = loadGame(storage);
 
     expect(migrated).toMatchObject({
-      schemaVersion: 4,
+      schemaVersion: 5,
       savedAt: "2026-07-23T12:00:00.000Z",
       state: {
-        schemaVersion: 4,
+        schemaVersion: 5,
         screen: "ending",
         inventoryReturnScreen: null,
         run: {

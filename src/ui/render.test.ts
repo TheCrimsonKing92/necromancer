@@ -197,7 +197,7 @@ describe("HTML rendering", () => {
 
     expect(markup).toContain("Debtor’s tally");
     expect(markup).toContain("Attack 4 → 5");
-    expect(markup).toContain("Defense 3 → 2");
+    expect(markup).toContain("Defense 1 → 0");
     expect(markup).toContain("replaces Saint-bone charm");
   });
 

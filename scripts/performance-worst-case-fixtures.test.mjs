@@ -25,7 +25,7 @@ const loadProductionContracts = async () => {
     ]);
     return {
       envelope: {
-        schemaVersion: 4,
+        schemaVersion: 5,
         savedAt: "2026-08-03T00:00:00.000Z",
         state: createCharacter("Scale Witness", "medium", "other").state,
       },
@@ -36,7 +36,7 @@ const loadProductionContracts = async () => {
   }
 };
 
-test("builds deterministic worst-case fixtures accepted by v4 validation", async () => {
+test("builds deterministic worst-case fixtures accepted by v5 validation", async () => {
   const { envelope, isResumableState } = await loadProductionContracts();
   const first = createWorstCaseFixtureMatrix(envelope);
   const second = createWorstCaseFixtureMatrix(envelope);
@@ -50,7 +50,7 @@ test("builds deterministic worst-case fixtures accepted by v4 validation", async
     assert.equal(
       isResumableState(fixture.envelope.state),
       true,
-      `${fixture.id} should remain a readable v4 state`,
+      `${fixture.id} should remain a readable v5 state`,
     );
   }
 });

@@ -66,15 +66,15 @@ const WORLD_RELATION_IDS = Object.freeze([
 
 const clone = (value) => structuredClone(value);
 
-const requireV4Envelope = (envelope) => {
+const requireV5Envelope = (envelope) => {
   if (
-    envelope?.schemaVersion !== 4 ||
-    envelope?.state?.schemaVersion !== 4 ||
+    envelope?.schemaVersion !== 5 ||
+    envelope?.state?.schemaVersion !== 5 ||
     !envelope.state.run?.player ||
     !envelope.state.run?.world
   ) {
     throw new TypeError(
-      "Worst-case fixtures require an existing resumable v4 save envelope.",
+      "Worst-case fixtures require an existing resumable v5 save envelope.",
     );
   }
 };
@@ -368,7 +368,7 @@ const dimensionManifest = Object.freeze({
   },
   campaignRouteSoak: {
     supported: false,
-    reason: "The current persisted v4 state has no integrated repeatable regional-route state.",
+    reason: "The current persisted v5 state has no integrated repeatable regional-route state.",
   },
   combatActionSoak: {
     supported: false,
@@ -381,7 +381,7 @@ const dimensionManifest = Object.freeze({
 });
 
 export const createWorstCaseFixtureMatrix = (baseEnvelope) => {
-  requireV4Envelope(baseEnvelope);
+  requireV5Envelope(baseEnvelope);
   const shared = baseFixtureState(baseEnvelope);
   const battle = clone(shared);
   battle.state.screen = "battle";

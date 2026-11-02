@@ -101,12 +101,12 @@ const requireBaseEnvelope = (baseEnvelope) => {
   if (
     !baseEnvelope ||
     typeof baseEnvelope !== "object" ||
-    baseEnvelope.schemaVersion !== 4 ||
+    baseEnvelope.schemaVersion !== 5 ||
     !baseEnvelope.state?.run ||
     !Array.isArray(baseEnvelope.state.run.flags)
   ) {
     throw new TypeError(
-      "Scale fixtures require a resumable v4 envelope with run.flags.",
+      "Scale fixtures require a resumable v5 envelope with run.flags.",
     );
   }
 };
@@ -127,7 +127,7 @@ const appendPadding = (flags, currentBytes, targetBytes) => {
 
 /**
  * Expands a real, valid save envelope through inert string flags. Unknown flags
- * are an intentionally supported extension seam in the v4 schema, so these
+ * are an intentionally supported extension seam in the v5 schema, so these
  * fixtures remain readable without inventing future domain IDs or outcomes.
  */
 export const createScalePersistenceFixture = (
