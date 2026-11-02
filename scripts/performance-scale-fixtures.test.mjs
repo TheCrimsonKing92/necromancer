@@ -14,10 +14,10 @@ import {
 } from "./performance-scale-fixtures.mjs";
 
 const baseEnvelope = () => ({
-  schemaVersion: 4,
+  schemaVersion: 5,
   savedAt: "2026-08-03T00:00:00.000Z",
   state: {
-    schemaVersion: 4,
+    schemaVersion: 5,
     screen: "story",
     storyId: "road",
     ending: null,
@@ -61,10 +61,10 @@ test("builds exact deterministic scale targets without mutating the save", () =>
   assert.notEqual(repeated.serialized, different.serialized);
 });
 
-test("rejects envelopes or targets that cannot preserve the v4 extension seam", () => {
+test("rejects envelopes or targets that cannot preserve the v5 extension seam", () => {
   assert.throws(
     () => createScalePersistenceFixture({}, { targetBytes: 100_000 }),
-    /resumable v4 envelope/,
+    /resumable v5 envelope/,
   );
   assert.throws(
     () =>

@@ -172,6 +172,7 @@ export const migrateLegacyState = (
 
   const player: Player = {
     ...migratedBase,
+    defense: 0,
     kind: "player",
     sex: "other",
     tradition,
@@ -220,7 +221,7 @@ export const migrateLegacyState = (
       : null;
 
   const migratedState: GameState = {
-    schemaVersion: 4,
+    schemaVersion: SAVE_SCHEMA_VERSION,
     campaign: createCampaignContinuity(seed),
     screen: value.screen as "story" | "battle" | "ending",
     storyId,
@@ -248,6 +249,26 @@ export const migrateLegacyState = (
   return migratedState;
 };
 
+export const promoteV4Value = (parsed: unknown): unknown => {
+  if (
+    !isRecord(parsed) ||
+    parsed.schemaVersion !== 4 ||
+    typeof parsed.savedAt !== "string" ||
+    !isRecord(parsed.state) ||
+    parsed.state.schemaVersion !== 4 ||
+    !isRecord(parsed.state.run)
+  ) {
+    return null;
+  }
+
+  if (isRecord(parsed.state.run.player)) {
+    parsed.state.run.player.defense = 0;
+  }
+  parsed.state.schemaVersion = SAVE_SCHEMA_VERSION;
+  parsed.schemaVersion = SAVE_SCHEMA_VERSION;
+  return parsed;
+};
+
 export const promoteV3Value = (parsed: unknown): unknown => {
   if (
     !isRecord(parsed) ||
@@ -261,9 +282,9 @@ export const promoteV3Value = (parsed: unknown): unknown => {
   }
 
   parsed.state.run.world = createWorldState();
-  parsed.state.schemaVersion = SAVE_SCHEMA_VERSION;
-  parsed.schemaVersion = SAVE_SCHEMA_VERSION;
-  return parsed;
+  parsed.state.schemaVersion = 4;
+  parsed.schemaVersion = 4;
+  return promoteV4Value(parsed);
 };
 
 export const promoteV2Value = (parsed: unknown): unknown => {
@@ -296,7 +317,7 @@ export const promoteV2Value = (parsed: unknown): unknown => {
   delete player.focus;
   delete player.maxFocus;
   parsed.state.run.world = createWorldState();
-  parsed.state.schemaVersion = SAVE_SCHEMA_VERSION;
-  parsed.schemaVersion = SAVE_SCHEMA_VERSION;
-  return parsed;
+  parsed.state.schemaVersion = 4;
+  parsed.schemaVersion = 4;
+  return promoteV4Value(parsed);
 };

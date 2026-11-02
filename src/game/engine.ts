@@ -33,7 +33,7 @@ import { createCampaignContinuity } from "./campaign-continuity";
 const cloneState = (state: GameState): GameState => structuredClone(state);
 
 export const createInitialState = (): GameState => ({
-  schemaVersion: 4,
+  schemaVersion: 5,
   campaign: null,
   screen: "home",
   storyId: null,
@@ -90,7 +90,7 @@ export const createCharacter = (
 
   return {
     state: {
-      schemaVersion: 4,
+      schemaVersion: 5,
       campaign: createCampaignContinuity(resolvedSeed),
       screen: "story",
       storyId: "weary-traveler",

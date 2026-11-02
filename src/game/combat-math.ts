@@ -4,7 +4,6 @@ import {
 } from "./anatomy";
 import {
   accuracyFromAttributes,
-  defenseFromAttributes,
   occultPowerFromAttributes,
   physicalPowerFromAttributes,
 } from "./character";
@@ -67,10 +66,7 @@ export const effectiveDefense = (target: Combatant): number => {
     target.kind === "player"
       ? equipmentDefenseBonus(target as Player)
       : 0;
-  const baseDefense =
-    target.kind === "player"
-      ? defenseFromAttributes((target as Player).attributes)
-      : target.defense;
+  const baseDefense = target.defense;
   return Math.max(
     0,
     baseDefense +
