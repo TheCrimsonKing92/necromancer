@@ -7,10 +7,10 @@ import {
 import { createLongSessionStressPlan } from "./performance-scale-fixtures.mjs";
 
 const baseline = {
-  schemaVersion: 4,
+  schemaVersion: 5,
   savedAt: "2026-08-03T00:00:00.000Z",
   state: {
-    schemaVersion: 4,
+    schemaVersion: 5,
     run: { seed: 1, flags: ["real-save"] },
   },
 };
@@ -25,7 +25,7 @@ const measuredSamples = (bytes, iterations) =>
     storageGetMs: 0.1,
     parseMs: 0.4,
     totalMs: 1.8,
-    schemaVersion: 4,
+    schemaVersion: 5,
   }));
 
 test("measures exact browser phases and returns no fixture payloads", async () => {

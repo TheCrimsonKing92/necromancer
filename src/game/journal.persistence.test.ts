@@ -64,7 +64,7 @@ describe("journal persistence", () => {
     storage.setItem(
       SAVE_KEY,
       JSON.stringify({
-        schemaVersion: 4,
+        schemaVersion: 5,
         savedAt: "2026-07-25T12:00:00.000Z",
         state: oldState,
       }),
