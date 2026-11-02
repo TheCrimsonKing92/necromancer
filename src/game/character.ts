@@ -181,10 +181,6 @@ export const physicalPowerFromAttributes = (
   attributes: CharacterAttributes,
 ): number => attributes.strength;
 
-export const defenseFromAttributes = (
-  attributes: CharacterAttributes,
-): number => attributes.dexterity;
-
 export const occultPowerFromAttributes = (
   attributes: CharacterAttributes,
   occultAttribute: AttributeId,

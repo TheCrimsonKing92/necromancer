@@ -189,7 +189,7 @@ const continueThroughRoadInterlude = (
 describe("game setup and narrative", () => {
   it("starts at the title and opens a clean creation flow", () => {
     expect(createInitialState()).toMatchObject({
-      schemaVersion: 4,
+      schemaVersion: 5,
       screen: "home",
       run: null,
       inventoryReturnScreen: null,

@@ -5,6 +5,7 @@ import {
   migrateLegacyState,
   promoteV2Value,
   promoteV3Value,
+  promoteV4Value,
 } from "./persistence/legacy-migrations";
 import {
   LEGACY_SAVE_KEY,
@@ -108,6 +109,9 @@ export const loadGame = (
       const current = parseCurrentEnvelope(currentRaw);
       if (current) return current;
     }
+
+    const promotedCurrent = loadPromotedSave(storage, SAVE_KEY, promoteV4Value);
+    if (promotedCurrent) return promotedCurrent;
 
     const previous = loadPromotedSave(
       storage,

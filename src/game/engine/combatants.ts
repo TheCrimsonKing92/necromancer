@@ -3,7 +3,6 @@ import { WAKE_VARIANTS } from "../encounters";
 import { advancementModifier } from "../advancements";
 import { createBody } from "../anatomy";
 import {
-  defenseFromAttributes,
   maximumHealthFromAttributes,
   physicalPowerFromAttributes,
 } from "../character";
@@ -100,7 +99,6 @@ export const createPlayer = (
   const skills = { ...definition.startingSkills };
   const maxHp = maximumHealthFromAttributes(attributes);
   const attack = physicalPowerFromAttributes(attributes);
-  const defense = defenseFromAttributes(attributes);
   const maxSpirit = definition.startingSpirit;
   // Grave Warden currently begins with the established field kit. Its
   // practice-specific equipment remains content work rather than a hidden
@@ -133,7 +131,7 @@ export const createPlayer = (
     hp: maxHp,
     maxHp,
     attack,
-    defense,
+    defense: 0,
     ward: 0,
     attributes,
     skills,
