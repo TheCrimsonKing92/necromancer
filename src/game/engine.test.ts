@@ -539,9 +539,20 @@ describe("battle engine", () => {
         entry.text.includes("raises 3 Ward"),
       ),
     ).toBe(true);
-    expect(result.run?.battle?.log.some((entry) =>
-      entry.text.includes("Ward turns the blow aside completely"),
-    )).toBe(true);
+    expect(
+      result.run?.battle?.log.flatMap((entry) =>
+        entry.event?.segments ?? [],
+      ),
+    ).toContainEqual(expect.objectContaining({
+      type: "damage",
+      target: result.run?.player.name,
+      damage: 0,
+      wardAbsorbed: 1,
+      armorAbsorbed: 1,
+      resistanceAbsorbed: 0,
+      protectionLabel: "Armor",
+    }));
+    expect(result.run?.player.ward).toBe(2);
 
     const alreadyBraced = createBattleState("medium");
     alreadyBraced.run!.player.ward = 3;
@@ -1271,7 +1282,18 @@ describe("inventory, equipment, and wounds", () => {
     );
 
     expect(bite?.text).toContain(
-      "Ward turns the blow aside completely",
+      "1 Ward absorbs part of the blow. Armor turns 1 damage. Nothing reaches their torso.",
+    );
+    expect(bite?.event?.segments).toContainEqual(
+      expect.objectContaining({
+        type: "damage",
+        action: "raking bite",
+        damage: 0,
+        wardAbsorbed: 1,
+        armorAbsorbed: 1,
+        resistanceAbsorbed: 0,
+        protectionLabel: "Armor",
+      }),
     );
     expect(bite?.text).not.toContain("0 damage");
     expect(result.run?.player.hp).toBe(hpBefore);
